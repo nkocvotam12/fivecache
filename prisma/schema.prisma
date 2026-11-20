@@ -17,11 +17,78 @@ model User {
   name          String?
   emailVerified DateTime?
   plan          String        @default("free") // free, hobby, pro_plus, custom_evarose
+  // Shield CDN billing balance (VND)
+  balanceVnd    Int           @default(0)
   createdAt     DateTime      @default(now())
   updatedAt     DateTime      @updatedAt
   servers       CacheServer[]
+  shields       ShieldServer[]
   sessions      Session[]
   tokens        VerificationToken[]
+}
+
+// ===== Shield CDN (anti-dump) =====
+model ShieldServer {
+  id              String   @id @default(cuid())
+  userId          String
+  code            String   @unique // subdomain portion e.g. "sharkcity"
+  name            String   // display name "SharkCITY"
+  originHost      String   // IP or domain of FXServer
+  originPort      Int      // 30120
+  protocol        String   @default("http") // http or https
+  domain          String   // <code>.fivecache.shield
+  cacheUrl        String   // https://<code>.fivecache.shield/files
+  adhesiveKey     String   // 32-byte hex random, used in `set adhesive_cdnKey`
+  status          String   @default("active") // active | suspended | cancelled
+  pricePerMonth   Int      @default(299000) // VND
+  expiresAt       DateTime // createdAt + 30 days
+  lastBilledAt    DateTime @default(now())
+  autoRenew       Boolean  @default(true)
+  // Aggregate stats
+  totalRequests   Int      @default(0)
+  blockedRequests Int      @default(0)
+  bandwidthServed Float    @default(0) // bytes
+  uniquePlayers   Int      @default(0)
+  createdAt       DateTime @default(now())
+  updatedAt       DateTime @updatedAt
+  user            User     @relation(fields: [userId], references: [id], onDelete: Cascade)
+  tokens          ShieldToken[]
+  logs            ShieldAccessLog[]
+}
+
+model ShieldToken {
+  id            String       @id @default(cuid())
+  shieldId      String
+  token         String       @unique // short-lived bearer token issued to a player session
+  playerLicense String       // FiveM player license (hex)
+  playerIp      String       // requester IP
+  expiresAt     DateTime     // ~5 minutes TTL
+  createdAt     DateTime     @default(now())
+  shield        ShieldServer @relation(fields: [shieldId], references: [id], onDelete: Cascade)
+
+  @@index([shieldId, expiresAt])
+}
+
+model ShieldAccessLog {
+  id            String       @id @default(cuid())
+  shieldId      String
+  timestamp     DateTime     @default(now())
+  playerIp      String?
+  playerLicense String?
+  filePath      String
+  status        String       // 'allowed' | 'blocked'
+  reason        String       // 'no_token' | 'invalid_token' | 'expired_token' | 'bad_user_agent' | 'invalid_hash' | 'shield_inactive' | 'ok'
+  bytesServed   Int          @default(0)
+  shield        ShieldServer @relation(fields: [shieldId], references: [id], onDelete: Cascade)
+}
+
+model BalanceTransaction {
+  id        String   @id @default(cuid())
+  userId    String
+  amount    Int      // positive = top-up, negative = billing
+  type      String   // 'topup' | 'shield_create' | 'shield_renew' | 'shield_cancel_refund'
+  reference String?  // shield id or note
+  createdAt DateTime @default(now())
 }
 
 model Session {

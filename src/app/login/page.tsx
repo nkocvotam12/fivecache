@@ -29,14 +29,14 @@ export default function LoginPage() {
       })
       const data = await res.json()
       if (!res.ok) {
-        setError(data.error || 'Đăng nhập thất bại')
+        setError(data.error || 'Login failed')
         return
       }
-      toast({ title: 'Chào mừng trở lại!', description: 'Bạn đã đăng nhập thành công.' })
+      toast({ title: 'Welcome back!', description: 'You are now signed in.' })
       router.push('/dashboard')
       router.refresh()
     } catch {
-      setError('Lỗi mạng. Vui lòng thử lại.')
+      setError('Network error. Please try again.')
     } finally {
       setLoading(false)
     }
@@ -51,7 +51,7 @@ export default function LoginPage() {
           className="absolute top-6 left-6 inline-flex items-center gap-2 text-zinc-400 hover:text-yellow-400 transition-colors text-sm"
         >
           <ArrowLeft className="h-4 w-4" />
-          Quay lại trang chủ
+          Back to homepage
         </Link>
 
         <div className="w-full max-w-md">
@@ -64,15 +64,15 @@ export default function LoginPage() {
             </Link>
           </div>
 
-          <h1 className="text-2xl font-bold text-zinc-50 text-center">Chào mừng trở lại</h1>
+          <h1 className="text-2xl font-bold text-zinc-50 text-center">Welcome back</h1>
           <p className="text-zinc-400 mt-2 text-center">
-            Đăng nhập vào tài khoản FiveCache của bạn
+            Sign in to your FiveCache account
           </p>
 
           <div className="mt-6 rounded-xl border border-zinc-800/50 bg-zinc-900/40 p-6 backdrop-blur-md">
-            <h2 className="text-xl text-zinc-50 mb-4">Đăng nhập</h2>
+            <h2 className="text-xl text-zinc-50 mb-4">Sign in</h2>
             <p className="text-sm text-zinc-400 mb-6">
-              Nhập email và mật khẩu để truy cập bảng điều khiển của bạn
+              Enter your email and password to access your dashboard
             </p>
 
             {error && (
@@ -100,12 +100,12 @@ export default function LoginPage() {
 
               <div>
                 <div className="flex items-center justify-between mb-1.5">
-                  <label className="text-sm font-medium text-zinc-300">Mật khẩu</label>
+                  <label className="text-sm font-medium text-zinc-300">Password</label>
                   <Link
                     href="/forgot-password"
                     className="text-xs text-yellow-400 hover:text-yellow-300"
                   >
-                    Quên mật khẩu?
+                    Forgot password?
                   </Link>
                 </div>
                 <div className="relative">
@@ -130,7 +130,7 @@ export default function LoginPage() {
                   <Loader2 className="h-4 w-4 animate-spin" />
                 ) : (
                   <>
-                    Đăng nhập
+                    Sign in
                     <ArrowRight className="h-4 w-4" />
                   </>
                 )}
@@ -138,22 +138,22 @@ export default function LoginPage() {
             </form>
 
             <div className="relative flex justify-center text-xs uppercase mt-6">
-              <span className="bg-zinc-900 px-2 text-zinc-400">Muốn đăng ký?</span>
+              <span className="bg-zinc-900 px-2 text-zinc-400">Prefer to sign up?</span>
             </div>
 
             <p className="text-center text-sm mt-4">
-              Chưa có tài khoản?{' '}
+              Don&apos;t have an account?{' '}
               <Link
                 href="/signup"
                 className="text-yellow-400 hover:text-yellow-300 font-medium"
               >
-                Đăng ký
+                Sign up
               </Link>
             </p>
           </div>
 
           <p className="pt-4 text-xs text-zinc-500 text-center">
-            Đăng nhập demo:{' '}
+            Demo login:{' '}
             <code className="text-yellow-400">demo@fivecache.site</code> /{' '}
             <code className="text-yellow-400">demo1234</code>
           </p>

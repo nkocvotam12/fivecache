@@ -3,7 +3,7 @@
 import Link from 'next/link'
 import { usePathname } from 'next/navigation'
 import { useEffect, useState } from 'react'
-import { Menu, X, Zap } from 'lucide-react'
+import { Menu, X, Zap, Shield } from 'lucide-react'
 
 export function SiteHeader() {
   const pathname = usePathname()
@@ -58,6 +58,13 @@ export function SiteHeader() {
               href="/#how-it-works"
             >
               How it Works
+            </Link>
+            <Link
+              className="text-zinc-300 hover:text-yellow-400 transition-colors duration-300 inline-flex items-center gap-1"
+              href="/shield"
+            >
+              <Shield className="h-3.5 w-3.5" />
+              Shield CDN
             </Link>
             {!loading && user ? (
               <Link
@@ -123,6 +130,14 @@ export function SiteHeader() {
             onClick={() => setOpen(false)}
           >
             How it Works
+          </Link>
+          <Link
+            href="/shield"
+            className="text-zinc-300 hover:text-yellow-400 transition-colors py-2 inline-flex items-center gap-1"
+            onClick={() => setOpen(false)}
+          >
+            <Shield className="h-3.5 w-3.5" />
+            Shield CDN
           </Link>
           <Link
             href={user ? '/dashboard' : '/login'}
