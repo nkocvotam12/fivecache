@@ -1,16 +1,17 @@
 import { NextRequest, NextResponse } from 'next/server'
-import { getSession, parseSessionCookie } from './auth'
 
-export async function requireUser(req: NextRequest) {
-  const token = parseSessionCookie(req)
-  const session = await getSession(token)
-  if (!session) {
-    return {
-      user: null,
-      response: NextResponse.json({ error: 'Please log in again.' }, { status: 401 }),
-    }
-  }
-  return { user: session.user, response: null }
+export const MOCK_USER = {
+  id: 'usr_demo_admin',
+  email: 'admin@fivecache.site',
+  name: 'FiveCache Admin',
+  plan: 'pro_plus',
+  emailVerified: true,
+  balanceVnd: 500000,
+}
+
+export async function requireUser(_req?: NextRequest) {
+  // Authentication completely bypassed: always return admin demo user
+  return { user: MOCK_USER, response: null }
 }
 
 export function formatBytes(bytes: number): string {

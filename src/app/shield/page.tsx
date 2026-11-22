@@ -103,10 +103,6 @@ export default function ShieldPage() {
   const loadData = useCallback(async () => {
     try {
       const res = await fetch('/api/shield/list')
-      if (res.status === 401) {
-        router.replace('/login')
-        return
-      }
       if (!res.ok) throw new Error('Failed to load shields')
       const json = await res.json()
       setData(json)
@@ -119,14 +115,8 @@ export default function ShieldPage() {
   }, [router])
 
   useEffect(() => {
-    fetch('/api/auth/me').then((r) => {
-      if (r.status === 401) {
-        router.replace('/login')
-        return
-      }
-      loadData()
-    })
-  }, [loadData, router])
+    loadData()
+  }, [loadData])
 
   if (loading && !authChecked) {
     return (

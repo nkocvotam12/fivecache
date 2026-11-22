@@ -73,26 +73,11 @@ export function SiteHeader() {
             {/* Language Switcher */}
             <LanguageSwitcher />
 
-            {!loading && user ? (
-              <Link
-                href="/dashboard"
-                className="inline-flex items-center justify-center gap-2 text-sm bg-gradient-to-r from-yellow-400 to-yellow-600 hover:from-yellow-500 hover:to-yellow-700 text-black border-0 rounded-lg px-5 py-2 h-9 font-semibold shadow-lg shadow-yellow-500/25 hover:shadow-yellow-500/40 transition-all duration-300"
-              >
-                {t.nav.dashboard}
-              </Link>
-            ) : (
-              <Link
-                className="text-zinc-300 hover:text-yellow-400 transition-colors duration-300 text-sm font-medium"
-                href="/login"
-              >
-                {t.nav.login}
-              </Link>
-            )}
             <Link
-              href={loading || user ? '/dashboard' : '/signup'}
+              href="/dashboard"
               className="inline-flex items-center justify-center gap-2 whitespace-nowrap text-sm bg-gradient-to-r from-yellow-400 to-yellow-600 hover:from-yellow-500 hover:to-yellow-700 text-black border-0 rounded-lg px-5 py-2 h-9 font-semibold shadow-lg shadow-yellow-500/25 hover:shadow-yellow-500/40 transition-all duration-300"
             >
-              {t.hero.ctaGetStarted}
+              {t.nav.dashboard}
             </Link>
           </nav>
 
@@ -150,18 +135,11 @@ export function SiteHeader() {
             {t.nav.shieldCdn}
           </Link>
           <Link
-            href={user ? '/dashboard' : '/login'}
-            className="text-zinc-300 hover:text-yellow-400 transition-colors py-2"
-            onClick={() => setOpen(false)}
-          >
-            {user ? t.nav.dashboard : t.nav.login}
-          </Link>
-          <Link
-            href={user ? '/dashboard' : '/signup'}
+            href="/dashboard"
             className="inline-flex items-center justify-center bg-gradient-to-r from-yellow-400 to-yellow-600 hover:from-yellow-500 hover:to-yellow-700 text-black rounded-lg px-6 py-2.5 font-semibold text-center"
             onClick={() => setOpen(false)}
           >
-            {t.hero.ctaGetStarted}
+            {t.nav.dashboard}
           </Link>
         </nav>
       )}

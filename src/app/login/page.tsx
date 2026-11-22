@@ -11,8 +11,10 @@ import { useLanguage } from '@/context/language-context'
 import { LanguageSwitcher } from '@/components/site/language-switcher'
 
 export default function LoginPage() {
-  useRedirectIfAuthenticated()
   const router = useRouter()
+  useEffect(() => {
+    router.replace('/dashboard')
+  }, [router])
   const { toast } = useToast()
   const { t } = useLanguage()
   const [email, setEmail] = useState('')

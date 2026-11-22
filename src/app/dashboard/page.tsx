@@ -122,10 +122,6 @@ export default function DashboardPage() {
         fetch('/api/dashboard/stats'),
         fetch('/api/dashboard/servers'),
       ])
-      if (statsRes.status === 401) {
-        router.replace('/login')
-        return
-      }
       if (!statsRes.ok) throw new Error('Failed to fetch dashboard stats')
       const statsData = await statsRes.json()
       const slotsData = await slotsRes.json()
@@ -143,14 +139,8 @@ export default function DashboardPage() {
   }, [router])
 
   useEffect(() => {
-    fetch('/api/auth/me').then((r) => {
-      if (r.status === 401) {
-        router.replace('/login')
-        return
-      }
-      loadData()
-    })
-  }, [loadData, router])
+    loadData()
+  }, [loadData])
 
   const refresh = () => {
     setRefreshing(true)

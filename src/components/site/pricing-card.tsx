@@ -68,7 +68,7 @@ export function PricingCard({ plan }: { plan: PricingPlan }) {
       </ul>
 
       <Link
-        href="/signup"
+        href="/dashboard"
         className={`block w-full text-center rounded-lg px-6 py-3 font-semibold transition-all duration-300 ${
           highlight
             ? 'bg-gradient-to-r from-yellow-400 to-yellow-600 hover:from-yellow-500 hover:to-yellow-700 text-black shadow-lg shadow-yellow-500/25 hover:shadow-yellow-500/40'

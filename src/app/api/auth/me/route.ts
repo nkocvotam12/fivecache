@@ -1,22 +1,16 @@
-import { NextRequest, NextResponse } from 'next/server'
-import { db } from '@/lib/db'
-import { getSession, parseSessionCookie } from '@/lib/auth'
+import { NextResponse } from 'next/server'
+import { MOCK_USER } from '@/lib/api'
 
 export const runtime = 'nodejs'
 
-export async function GET(req: NextRequest) {
-  const token = parseSessionCookie(req)
-  const session = await getSession(token)
-  if (!session) {
-    return NextResponse.json({ user: null }, { status: 200 })
-  }
+export async function GET() {
   return NextResponse.json({
     user: {
-      id: session.user.id,
-      email: session.user.email,
-      name: session.user.name,
-      emailVerified: !!session.user.emailVerified,
-      plan: session.user.plan,
+      id: MOCK_USER.id,
+      email: MOCK_USER.email,
+      name: MOCK_USER.name,
+      emailVerified: true,
+      plan: MOCK_USER.plan,
     },
   })
 }
