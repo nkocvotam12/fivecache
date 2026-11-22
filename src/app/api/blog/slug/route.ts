@@ -14,58 +14,58 @@ const STATIC_POSTS: Record<string, {
 }> = {
   'multi-server-support': {
     slug: 'multi-server-support',
-    title: 'Manage Multiple Servers with One Account',
-    category: 'New Feature',
+    title: 'Quản lý Nhiều Server với Một Tài khoản',
+    category: 'Tính năng mới',
     date: '2025-12-06T00:00:00.000Z',
     readTime: 2,
-    excerpt: 'We are excited to announce a major update to FiveCache: Multi-Server Support.',
-    content: `We are excited to announce a major update to **FiveCache**: *Multi-Server Support*.
+    excerpt: 'Chúng tôi vui mừng thông báo bản cập nhật lớn cho FiveCache: Hỗ trợ Đa Server.',
+    content: `Chúng tôi vui mừng thông báo bản cập nhật lớn cho **FiveCache**: *Hỗ trợ Đa Server*.
 
-Many of our users manage communities with multiple FiveM server instances. Until now, managing the cache for each of these required separate setups or workarounds.
+Nhiều người dùng của chúng tôi quản lý cộng đồng với nhiều phiên bản server FiveM khác nhau. Cho đến nay, việc quản lý cache cho từng server này đòi hỏi phải thiết lập riêng biệt hoặc dùng các giải pháp tạm thời.
 
-## What's New?
-- **Unified Dashboard:** View and manage all your servers from a single dashboard.
-- **Isolated Caches:** Each server gets its own isolated cache environment.
-- **Scalable Plans:** Upgrade individual servers as needed.`,
+## Có gì mới?
+- **Bảng điều khiển hợp nhất:** Xem và quản lý tất cả các server của bạn từ một bảng điều khiển duy nhất.
+- **Cache biệt lập:** Mỗi server có một môi trường cache riêng biệt.
+- **Gói dịch vụ linh hoạt:** Nâng cấp từng server khi cần.`,
   },
   'optimizing-fivem-assets': {
     slug: 'optimizing-fivem-assets',
-    title: 'Optimizing FiveM Assets for Performance',
-    category: 'Education',
+    title: 'Tối ưu hóa Tài nguyên FiveM để Tăng hiệu năng',
+    category: 'Giáo dục',
     date: '2025-11-20T00:00:00.000Z',
     readTime: 5,
-    excerpt: 'Unoptimized cars, clothing, and maps are the #1 cause of texture loss, low FPS, and client crashes.',
-    content: `Running a high-performance FiveM server requires optimized assets.
+    excerpt: 'Xe, quần áo và bản đồ chưa được tối ưu là nguyên nhân số 1 gây mất texture, FPS thấp và crash client.',
+    content: `Vận hành một server FiveM hiệu năng cao đòi hỏi tài nguyên được tối ưu.
 
-## Texture Compression (YTD)
-- Downscale textures to 1024x1024 or 2048x2048 max.
-- Use proper DXT1/DXT5 compression.
-- Aim for vehicle .ytd files under 10MB.`,
+## Nén Texture (YTD)
+- Giảm kích thước texture xuống tối đa 1024x1024 hoặc 2048x2048.
+- Sử dụng nén DXT1/DXT5 phù hợp.
+- Hướng đến các file .ytd của xe dưới 10MB.`,
   },
   'why-cdn-matters': {
     slug: 'why-cdn-matters',
-    title: 'Why a CDN is Critical for High-Population Servers',
-    category: 'Education',
+    title: 'Tại sao CDN lại Quan trọng đối với Server Đông Người chơi',
+    category: 'Giáo dục',
     date: '2025-11-10T00:00:00.000Z',
     readTime: 4,
-    excerpt: "For high-population servers, a Content Delivery Network (CDN) isn't just a luxury; it's a necessity.",
-    content: `When you host assets directly on your game server, every player downloading resources eats into game tick rate and network state.
+    excerpt: "Đối với các server đông người chơi, Mạng phân phối nội dung (CDN) không chỉ là xa xỉ phẩm; mà là điều thiết yếu.",
+    content: `Khi bạn lưu trữ tài nguyên trực tiếp trên server game, mỗi người chơi tải xuống tài nguyên đều tiêu tốn vào tick rate của game và trạng thái mạng.
 
-A CDN offloads 100% of this traffic, leaving your server bandwidth free.`,
+CDN giảm tải 100% lưu lượng này, giải phóng băng thông của server.`,
   },
 }
 
 export async function GET(req: NextRequest) {
   const slug = req.nextUrl.searchParams.get('slug')
   if (!slug) {
-    return NextResponse.json({ error: 'slug is required.' }, { status: 400 })
+    return NextResponse.json({ error: 'Yêu cầu tham số slug.' }, { status: 400 })
   }
 
   try {
     const post = await db.blogPost.findUnique({ where: { slug } })
     if (post) return NextResponse.json({ post })
   } catch {
-    // fallback
+    // dự phòng (fallback)
   }
 
   const staticPost = STATIC_POSTS[slug]
@@ -73,5 +73,5 @@ export async function GET(req: NextRequest) {
     return NextResponse.json({ post: staticPost })
   }
 
-  return NextResponse.json({ error: 'Post not found.' }, { status: 404 })
+  return NextResponse.json({ error: 'Không tìm thấy bài viết.' }, { status: 404 })
 }
