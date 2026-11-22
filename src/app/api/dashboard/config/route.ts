@@ -15,7 +15,7 @@ export async function POST(req: NextRequest) {
     const serverPort = Number(body.serverPort) || null
 
     if (!id || !name) {
-      return NextResponse.json({ error: 'Server id and name are required.' }, { status: 400 })
+      return NextResponse.json({ error: 'Yêu cầu nhập ID server và tên server.' }, { status: 400 })
     }
 
     try {
@@ -31,21 +31,21 @@ export async function POST(req: NextRequest) {
         })
         return NextResponse.json({
           ok: true,
-          message: 'FiveM server configuration saved successfully!',
+          message: 'Đã lưu cấu hình server FiveM thành công!',
           server: updated,
         })
       }
     } catch {
-      // ignore db error
+      // bỏ qua lỗi db
     }
 
     return NextResponse.json({
       ok: true,
-      message: 'FiveM server configuration saved successfully (demo mode)!',
+      message: 'Đã lưu cấu hình server FiveM thành công (chế độ demo)!',
       server: { id, serverId: id, name, serverIp, serverPort },
     })
   } catch (e) {
-    console.error('Save config error:', e)
-    return NextResponse.json({ error: 'Failed to save configuration.' }, { status: 500 })
+    console.error('Lỗi lưu cấu hình:', e)
+    return NextResponse.json({ error: 'Không thể lưu cấu hình.' }, { status: 500 })
   }
 }

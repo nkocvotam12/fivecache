@@ -1,5 +1,5 @@
 import { NextRequest, NextResponse } from 'next/server'
-import { db } from '@/lib/db'
+import { db, isDbConfigured } from '@/lib/db'
 import { requireUser, formatBytes } from '@/lib/api'
 
 export const runtime = 'nodejs'
@@ -76,6 +76,10 @@ const DEMO_STATS = {
 
 export async function GET(req: NextRequest) {
   const { user } = await requireUser(req)
+
+  if (!isDbConfigured()) {
+    return NextResponse.json(DEMO_STATS)
+  }
 
   try {
     const servers = await db.cacheServer.findMany({
@@ -155,9 +159,7 @@ export async function GET(req: NextRequest) {
       selected: { id: selected.id, serverId: selected.serverId, name: selected.name },
       stats,
     })
-  } catch (err) {
-    // Fallback to DEMO_STATS if database is unavailable or not configured
-    console.warn('Dashboard stats fallback to demo data:', err)
+  } catch {
     return NextResponse.json(DEMO_STATS)
   }
 }

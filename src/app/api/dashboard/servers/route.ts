@@ -1,5 +1,5 @@
 import { NextRequest, NextResponse } from 'next/server'
-import { db } from '@/lib/db'
+import { db, isDbConfigured } from '@/lib/db'
 import { requireUser } from '@/lib/api'
 import { generateServerId as genId } from '@/lib/auth'
 
@@ -36,6 +36,14 @@ const DEMO_SERVERS = [
 export async function GET(req: NextRequest) {
   const { user } = await requireUser(req)
 
+  if (!isDbConfigured()) {
+    return NextResponse.json({
+      servers: DEMO_SERVERS,
+      slots: { total: 5, used: DEMO_SERVERS.length, available: 5 - DEMO_SERVERS.length },
+      plan: 'pro_plus',
+    })
+  }
+
   try {
     const servers = await db.cacheServer.findMany({
       where: { userId: user.id },
@@ -64,8 +72,7 @@ export async function GET(req: NextRequest) {
       slots: { total: slotsTotal, used: slotsUsed, available: Math.max(0, slotsTotal - slotsUsed) },
       plan: user.plan,
     })
-  } catch (err) {
-    console.warn('Dashboard servers fallback to demo data:', err)
+  } catch {
     return NextResponse.json({
       servers: DEMO_SERVERS,
       slots: { total: 5, used: DEMO_SERVERS.length, available: 5 - DEMO_SERVERS.length },

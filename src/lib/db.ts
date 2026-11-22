@@ -4,8 +4,20 @@ const globalForPrisma = globalThis as unknown as {
   prisma: PrismaClient | null | undefined
 }
 
+export function isDbConfigured(): boolean {
+  const url = process.env.DATABASE_URL || ''
+  return url.startsWith('postgresql://') || url.startsWith('postgres://')
+}
+
 function getPrismaInstance(): PrismaClient | null {
+  // If DATABASE_URL is not a valid Postgres connection string (e.g. still local file:./dev.db),
+  // don't even instantiate Prisma to avoid validation errors
+  if (!isDbConfigured()) {
+    return null
+  }
+
   if (globalForPrisma.prisma) return globalForPrisma.prisma
+
   try {
     const client = new PrismaClient({
       log: ['query'],
@@ -14,8 +26,7 @@ function getPrismaInstance(): PrismaClient | null {
       globalForPrisma.prisma = client
     }
     return client
-  } catch (err) {
-    console.warn('PrismaClient is not ready, falling back to mock mode:', err)
+  } catch {
     return null
   }
 }
@@ -27,7 +38,7 @@ export const db = new Proxy({} as PrismaClient, {
     if (!client) {
       return new Proxy({}, {
         get() {
-          return () => Promise.reject(new Error('@prisma/client did not initialize yet'))
+          return () => Promise.reject(new Error('Database is not configured for PostgreSQL'))
         },
       })
     }
