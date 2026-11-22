@@ -11,7 +11,10 @@ export const MOCK_USER = {
 
 export async function requireUser(_req?: NextRequest) {
   // Authentication completely bypassed: always return admin demo user
-  return { user: MOCK_USER, response: null }
+  return {
+    user: MOCK_USER,
+    response: NextResponse.json({ error: 'Unauthorized' }, { status: 401 }),
+  }
 }
 
 export function formatBytes(bytes: number): string {

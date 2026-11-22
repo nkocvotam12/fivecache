@@ -1,12 +1,18 @@
 import { NextRequest, NextResponse } from 'next/server'
-import { db } from '@/lib/db'
+import { db, isDbConfigured } from '@/lib/db'
 import { requireUser } from '@/lib/api'
 
 export const runtime = 'nodejs'
 
+// Global in-memory balance store for demo environments
+const globalBalanceStore = globalThis as unknown as {
+  demoBalances?: Map<string, number>
+}
+if (!globalBalanceStore.demoBalances) {
+  globalBalanceStore.demoBalances = new Map<string, number>()
+}
+
 // POST /api/shield/topup-balance { amount: number }
-// In production this would be wired to a payment gateway (VNPay, MoMo, Stripe).
-// For demo we just credit the user's balance directly.
 export async function POST(req: NextRequest) {
   const { user, response } = await requireUser(req)
   if (!user) return response
@@ -16,6 +22,13 @@ export async function POST(req: NextRequest) {
     const amount = Math.floor(Number(body.amount) || 0)
     if (amount <= 0 || amount > 100_000_000_000) {
       return NextResponse.json({ error: 'Invalid amount.' }, { status: 400 })
+    }
+
+    if (!isDbConfigured()) {
+      const current = globalBalanceStore.demoBalances!.get(user.id) ?? 500_000
+      const newBalance = current + amount
+      globalBalanceStore.demoBalances!.set(user.id, newBalance)
+      return NextResponse.json({ ok: true, newBalance })
     }
 
     const updated = await db.$transaction(async (tx) => {

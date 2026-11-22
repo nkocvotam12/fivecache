@@ -22,6 +22,8 @@ import {
   ShieldAlert,
   ChevronDown,
   CheckCircle2,
+  QrCode,
+  Wallet,
 } from 'lucide-react'
 import Link from 'next/link'
 import { useRouter } from 'next/navigation'
@@ -29,6 +31,7 @@ import { AnimatedBackground } from '@/components/site/animated-background'
 import { SiteHeader } from '@/components/site/site-header'
 import { SiteFooter } from '@/components/site/site-footer'
 import { useToast } from '@/hooks/use-toast'
+import { VietQRModal } from '@/components/payment/vietqr-modal'
 import {
   Dialog,
   DialogContent,
@@ -116,6 +119,7 @@ export default function DashboardPage() {
   const [error, setError] = useState('')
   const [authChecked, setAuthChecked] = useState(false)
   const [refreshing, setRefreshing] = useState(false)
+  const [topupOpen, setTopupOpen] = useState(false)
 
   const loadData = useCallback(async () => {
     try {
@@ -192,6 +196,7 @@ export default function DashboardPage() {
           data={data}
           refreshing={refreshing}
           onRefresh={refresh}
+          onTopup={() => setTopupOpen(true)}
         />
 
         {data && data.stats && (
@@ -214,6 +219,16 @@ export default function DashboardPage() {
         {data && data.servers.length === 0 && (
           <NoServersEmptyState onUpgrade={() => router.push('/#pricing')} />
         )}
+
+        <VietQRModal
+          open={topupOpen}
+          onOpenChange={setTopupOpen}
+          defaultAmount={299_000}
+          planName="Nạp tiền FiveCache CDN"
+          onSuccess={() => {
+            refresh()
+          }}
+        />
       </main>
       <SiteFooter />
     </div>
@@ -224,10 +239,12 @@ function DashboardHeader({
   data,
   refreshing,
   onRefresh,
+  onTopup,
 }: {
   data: DashboardData | null
   refreshing: boolean
   onRefresh: () => void
+  onTopup: () => void
 }) {
   return (
     <div className="flex flex-col md:flex-row justify-between items-start md:items-center gap-4 mb-8">
@@ -238,15 +255,24 @@ function DashboardHeader({
         </h1>
         <p className="text-zinc-400 mt-1">Chào mừng trở lại, quản lý các cache server của bạn.</p>
       </div>
-      <Button
-        variant="outline"
-        onClick={onRefresh}
-        className="border-zinc-700 text-zinc-300 hover:text-white hover:bg-zinc-800 bg-transparent"
-        disabled={refreshing}
-      >
-        <RefreshCw className={`h-4 w-4 mr-2 ${refreshing ? 'animate-spin' : ''}`} />
-        Làm mới dữ liệu
-      </Button>
+      <div className="flex items-center gap-2">
+        <Button
+          onClick={onTopup}
+          className="bg-gradient-to-r from-yellow-400 to-yellow-600 hover:from-yellow-500 hover:to-yellow-700 text-black font-semibold text-sm shadow-md"
+        >
+          <QrCode className="h-4 w-4 mr-2" />
+          Nạp tiền VietQR
+        </Button>
+        <Button
+          variant="outline"
+          onClick={onRefresh}
+          className="border-zinc-700 text-zinc-300 hover:text-white hover:bg-zinc-800 bg-transparent"
+          disabled={refreshing}
+        >
+          <RefreshCw className={`h-4 w-4 mr-2 ${refreshing ? 'animate-spin' : ''}`} />
+          Làm mới dữ liệu
+        </Button>
+      </div>
     </div>
   )
 }
