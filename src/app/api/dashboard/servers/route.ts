@@ -7,10 +7,22 @@ export const runtime = 'nodejs'
 
 const DEMO_SERVERS = [
   {
+    id: 'srv_danchoixom',
+    serverId: 'danchoixom',
+    name: 'Dân Chơi Xóm RP',
+    domain: 'play.danchoixom.com',
+    serverIp: '51.79.138.64',
+    serverPort: 30120,
+    plan: 'pro_plus',
+    blocked: false,
+    resetDate: '2026-12-31',
+    createdAt: new Date().toISOString(),
+  },
+  {
     id: 'srv_demo_1',
     serverId: 'sharkcity',
     name: 'SharkCITY FiveM RP',
-    domain: 'sharkcity.fivecachesite.vercel.app',
+    domain: 'sharkcity.fivecache.site',
     serverIp: '103.145.2.10',
     serverPort: 30120,
     plan: 'pro_plus',

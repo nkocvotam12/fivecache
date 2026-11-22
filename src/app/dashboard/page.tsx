@@ -122,7 +122,7 @@ export default function DashboardPage() {
         fetch('/api/dashboard/stats'),
         fetch('/api/dashboard/servers'),
       ])
-      if (!statsRes.ok) throw new Error('Failed to fetch dashboard stats')
+      if (!statsRes.ok) throw new Error('Không thể lấy dữ liệu thống kê')
       const statsData = await statsRes.json()
       const slotsData = await slotsRes.json()
       setData(statsData)
@@ -130,7 +130,7 @@ export default function DashboardPage() {
       setError('')
     } catch (e) {
       console.error(e)
-      setError('Failed to load dashboard')
+      setError('Không thể tải bảng điều khiển')
     } finally {
       setLoading(false)
       setRefreshing(false)
@@ -172,7 +172,7 @@ export default function DashboardPage() {
             className="border-red-600 text-red-400 hover:bg-red-600/20 bg-transparent"
             onClick={refresh}
           >
-            Try Again
+            Thử lại
           </Button>
         </main>
         <SiteFooter />
@@ -180,7 +180,7 @@ export default function DashboardPage() {
     )
   }
 
-  const user = null // we don't show user name in header, but pass to dashboard below
+  const user = null // chúng tôi không hiển thị tên người dùng ở header, nhưng truyền vào dashboard bên dưới
 
   return (
     <div className="min-h-screen flex flex-col bg-zinc-950 text-zinc-50 relative overflow-hidden">
@@ -232,10 +232,10 @@ function DashboardHeader({
     <div className="flex flex-col md:flex-row justify-between items-start md:items-center gap-4 mb-8">
       <div>
         <h1 className="text-3xl font-bold text-zinc-50 flex items-center gap-2">
-          Dashboard
+          Tổng quan
           {refreshing && <Loader2 className="h-6 w-6 animate-spin text-zinc-500" />}
         </h1>
-        <p className="text-zinc-400 mt-1">Welcome back, manage your cache servers.</p>
+        <p className="text-zinc-400 mt-1">Chào mừng trở lại, quản lý các cache server của bạn.</p>
       </div>
       <Button
         variant="outline"
@@ -244,7 +244,7 @@ function DashboardHeader({
         disabled={refreshing}
       >
         <RefreshCw className={`h-4 w-4 mr-2 ${refreshing ? 'animate-spin' : ''}`} />
-        Refresh Data
+        Làm mới dữ liệu
       </Button>
     </div>
   )
@@ -268,7 +268,6 @@ function DashboardContent({
 
   return (
     <div className="space-y-8">
-      {/* Server selector + slot info */}
       <ServerSelector
         servers={servers}
         selected={data.selected}
@@ -276,21 +275,13 @@ function DashboardContent({
         onChange={onChangeServer}
         onAddServer={onShowAddServer}
       />
-
-      {/* Stats cards */}
       <StatsGrid stats={stats} />
-
-      {/* Cache server details */}
       <CacheServerPanel stats={stats} onRefresh={onRefresh} />
-
-      {/* Response status + Countries + Top files */}
       <div className="grid gap-6 md:grid-cols-2 lg:grid-cols-3">
         <ResponseStatusPanel stats={stats} />
         <CountriesPanel stats={stats} />
         <TopFilesPanel stats={stats} />
       </div>
-
-      {/* Monthly usage history */}
       <MonthlyUsageTable stats={stats} />
     </div>
   )
@@ -323,7 +314,7 @@ function ServerSelector({
         >
           <Server className="h-4 w-4 mr-2" />
           <span className="flex-1 text-left truncate">
-            {selected ? selected.name : 'Select Server'}
+            {selected ? selected.name : 'Chọn Server'}
           </span>
           <ChevronDown className="h-4 w-4" />
         </button>
@@ -331,7 +322,7 @@ function ServerSelector({
         {open && (
           <div className="absolute top-full left-0 mt-2 w-full min-w-[240px] rounded-lg border border-zinc-700 bg-zinc-900 shadow-xl z-20 overflow-hidden">
             <div className="px-3 py-2 text-xs text-zinc-500 uppercase border-b border-zinc-800">
-              Your Servers
+              Servers của bạn
             </div>
             {servers.map((s) => (
               <button
@@ -357,12 +348,12 @@ function ServerSelector({
                 }}
                 className="w-full px-3 py-2 text-left text-sm flex items-center justify-between cursor-pointer text-yellow-500 hover:text-yellow-400 hover:bg-zinc-800 border-t border-zinc-800"
               >
-                <span>Add New Server</span>
+                <span>Thêm Server mới</span>
                 <Plus className="h-4 w-4" />
               </button>
             ) : (
               <div className="px-3 py-2 text-sm text-zinc-500 border-t border-zinc-800">
-                You do not have any slots available.
+                Bạn không có slot nào khả dụng.
               </div>
             )}
           </div>
@@ -371,7 +362,7 @@ function ServerSelector({
 
       {slots && (
         <span className="text-xs text-zinc-500 ml-2">
-          {slots.slots.used} / {slots.slots.total === 999 ? '∞' : slots.slots.total} slots used
+          Đã dùng {slots.slots.used} / {slots.slots.total === 999 ? '∞' : slots.slots.total} slot
         </span>
       )}
     </div>
@@ -384,32 +375,32 @@ function StatsGrid({ stats }: { stats: DashboardData['stats'] }) {
   const cards = [
     {
       icon: TrendingUp,
-      label: 'Total Requests',
+      label: 'Tổng số yêu cầu',
       value: totals.requests.toLocaleString(),
-      hint: 'This month',
+      hint: 'Tháng này',
       color: 'text-zinc-50',
     },
     {
       icon: Zap,
-      label: 'Bandwidth Used',
+      label: 'Băng thông đã dùng',
       value: totals.bandwidthUsedFormatted,
-      hint: 'Unlimited',
+      hint: 'Không giới hạn',
       color: 'text-zinc-50',
       progress: 0.42,
     },
     {
       icon: HardDrive,
-      label: 'Storage Used',
+      label: 'Dung lượng đã dùng',
       value: totals.storageUsedFormatted,
-      hint: 'Unlimited',
+      hint: 'Không giới hạn',
       color: 'text-zinc-50',
       progress: 0.35,
     },
     {
       icon: Gauge,
-      label: 'Cache Hit Rate',
+      label: 'Tỷ lệ Cache Hit',
       value: `${Math.round(totals.cacheHitRate * 100)}%`,
-      hint: `${totals.filesCached} files cached`,
+      hint: `${totals.filesCached} file đã cache`,
       color: 'text-green-400',
     },
   ]
@@ -460,7 +451,7 @@ function CacheServerPanel({
   const copyUrl = () => {
     navigator.clipboard.writeText(stats.cacheUrl).then(() => {
       setCopied(true)
-      toast({ title: 'Copied to clipboard!' })
+      toast({ title: 'Đã sao chép vào clipboard!' })
       setTimeout(() => setCopied(false), 2000)
     })
   }
@@ -474,14 +465,14 @@ function CacheServerPanel({
       const data = await res.json()
       if (!res.ok) {
         toast({
-          title: 'Cannot clear cache',
+          title: 'Không thể xóa cache',
           description: data.error,
           variant: 'destructive',
         })
       } else {
         toast({
-          title: 'Cache cleared',
-          description: 'Cache and CDN purge complete.',
+          title: 'Đã xóa cache',
+          description: 'Cache và CDN đã được xóa hoàn tất.',
         })
         onRefresh()
       }
@@ -494,9 +485,9 @@ function CacheServerPanel({
     <div className="rounded-xl border border-zinc-800/50 bg-zinc-900/40 backdrop-blur-sm p-6">
       <div className="flex items-center justify-between mb-4">
         <div>
-          <h2 className="text-lg font-semibold text-zinc-50">Your Cache Server</h2>
+          <h2 className="text-lg font-semibold text-zinc-50">Cache Server của bạn</h2>
           <p className="text-sm text-zinc-400">
-            Your FiveM cache server details and configuration
+            Chi tiết và cấu hình cache server FiveM của bạn
           </p>
         </div>
         <Button
@@ -506,14 +497,14 @@ function CacheServerPanel({
           className="border-zinc-700 text-zinc-300 hover:text-white hover:bg-zinc-800 bg-transparent"
         >
           <Settings className="h-4 w-4 mr-2" />
-          Configure
+          Cấu hình
         </Button>
       </div>
 
       <div className="grid gap-6 md:grid-cols-2">
-        {/* Cache Server URL */}
+        {/* URL Cache Server */}
         <div>
-          <p className="text-sm text-zinc-400 mb-1">Cache Server URL</p>
+          <p className="text-sm text-zinc-400 mb-1">URL Cache Server</p>
           <div className="flex items-center gap-2 mt-1">
             <code className="flex-1 px-3 py-2 rounded-lg bg-zinc-800/50 border border-zinc-700 text-zinc-100 text-sm font-mono truncate">
               {stats.cacheUrl}
@@ -532,22 +523,22 @@ function CacheServerPanel({
             </Button>
           </div>
           <p className="text-xs text-zinc-500 mt-1">
-            Use this URL in your FiveM server configuration, make sure to use HTTPS
+            Sử dụng URL này trong cấu hình server FiveM của bạn, đảm bảo dùng HTTPS
           </p>
         </div>
 
-        {/* Server Domain */}
+        {/* Domain Server */}
         <div>
-          <p className="text-sm text-zinc-400 mb-1">Server Domain</p>
+          <p className="text-sm text-zinc-400 mb-1">Domain Server</p>
           <code className="block px-3 py-2 rounded-lg bg-zinc-800/50 border border-zinc-700 text-zinc-100 text-sm font-mono truncate mt-1">
             {stats.domain}
           </code>
         </div>
       </div>
 
-      {/* Cache management */}
+      {/* Quản lý cache */}
       <div className="mt-6 pt-6 border-t border-zinc-800">
-        <p className="text-sm text-zinc-400 mb-2">Cache Management</p>
+        <p className="text-sm text-zinc-400 mb-2">Quản lý Cache</p>
         {canClear ? (
           <Button
             variant="outline"
@@ -560,7 +551,7 @@ function CacheServerPanel({
             ) : (
               <Trash2 className="h-4 w-4 mr-2" />
             )}
-            {clearing ? 'Clearing Cache...' : 'Clear Cache & Purge CDN'}
+            {clearing ? 'Đang xóa Cache...' : 'Xóa Cache & Purge CDN'}
           </Button>
         ) : (
           <Button
@@ -570,12 +561,12 @@ function CacheServerPanel({
           >
             <Link href="/#pricing">
               <Zap className="h-4 w-4 mr-2" />
-              Upgrade to Clear Cache
+              Nâng cấp để Xóa Cache
             </Link>
           </Button>
         )}
         <p className="text-xs text-zinc-500 mt-1">
-          Deletes cache and purges Cloudflare cache (once per day)
+          Xóa cache và purge Cloudflare cache (mỗi ngày một lần)
         </p>
       </div>
 
@@ -606,7 +597,7 @@ function ServerConfigDialog({
   const [serverPort, setServerPort] = useState('')
   const [saving, setSaving] = useState(false)
 
-  // Load existing config when dialog opens
+  // Tải cấu hình hiện có khi mở dialog
   useEffect(() => {
     if (open && serverId) {
       fetch('/api/dashboard/servers').then(async (r) => {
@@ -637,11 +628,11 @@ function ServerConfigDialog({
       })
       const data = await res.json()
       if (!res.ok) {
-        toast({ title: 'Save failed', description: data.error, variant: 'destructive' })
+        toast({ title: 'Lưu thất bại', description: data.error, variant: 'destructive' })
       } else {
         toast({
-          title: 'Configuration Generated',
-          description: data.message || 'FiveM server configuration saved successfully!',
+          title: 'Đã tạo cấu hình',
+          description: data.message || 'Đã lưu cấu hình server FiveM thành công!',
         })
         onOpenChange(false)
         onSaved()
@@ -657,23 +648,23 @@ function ServerConfigDialog({
         <DialogHeader>
           <DialogTitle className="text-zinc-50 flex items-center gap-2">
             <Settings className="h-5 w-5 text-yellow-400" />
-            FiveM Server Configuration
+            Cấu hình Server FiveM
           </DialogTitle>
           <DialogDescription className="text-zinc-400">
-            Add these lines to your FiveM server.cfg
+            Thêm các dòng sau vào file server.cfg của server FiveM
           </DialogDescription>
         </DialogHeader>
 
         <form onSubmit={save} className="space-y-4 py-4">
           <div className="space-y-2">
             <Label htmlFor="serverName" className="text-zinc-300">
-              Server Name
+              Tên Server
             </Label>
             <Input
               id="serverName"
               value={name}
               onChange={(e) => setName(e.target.value)}
-              placeholder="My Roleplay Server"
+              placeholder="Server Roleplay của tôi"
               className="bg-zinc-800/60 border-zinc-700 text-zinc-100"
               required
             />
@@ -682,7 +673,7 @@ function ServerConfigDialog({
           <div className="grid grid-cols-2 gap-4">
             <div className="space-y-2">
               <Label htmlFor="serverIp" className="text-zinc-300">
-                Server IP
+                IP Server
               </Label>
               <Input
                 id="serverIp"
@@ -694,7 +685,7 @@ function ServerConfigDialog({
             </div>
             <div className="space-y-2">
               <Label htmlFor="serverPort" className="text-zinc-300">
-                Server Port
+                Cổng Server
               </Label>
               <Input
                 id="serverPort"
@@ -706,11 +697,11 @@ function ServerConfigDialog({
             </div>
           </div>
 
-          {/* Generated config preview */}
+          {/* Xem trước cấu hình được tạo */}
           {name && (
             <div className="mt-2 p-3 bg-zinc-800 rounded-lg border border-zinc-700">
               <p className="text-zinc-50 font-medium mb-2 text-sm">
-                Generated server.cfg snippet:
+                Đoạn mã server.cfg được tạo:
               </p>
               <pre className="text-green-400 text-sm font-mono whitespace-pre-wrap break-all">
                 {`fileserver_add ".*" "https://${serverId}.fivecachesite.vercel.app/files"`}
@@ -719,12 +710,12 @@ function ServerConfigDialog({
           )}
 
           <div className="p-4 bg-green-500/10 border border-green-500/20 rounded-lg">
-            <p className="text-green-400 font-medium mb-2 text-sm">Setup Instructions:</p>
+            <p className="text-green-400 font-medium mb-2 text-sm">Hướng dẫn cài đặt:</p>
             <ol className="text-zinc-300 text-sm space-y-1 list-decimal list-inside">
-              <li>Copy the fileserver line above</li>
-              <li>Add it to your FiveM server.cfg file</li>
-              <li>Restart your FiveM server</li>
-              <li>Your cache files will now be served through our global CDN!</li>
+              <li>Sao chép dòng fileserver ở trên</li>
+              <li>Thêm vào file server.cfg của FiveM</li>
+              <li>Khởi động lại server FiveM</li>
+              <li>Các file cache của bạn sẽ được phân phối qua CDN toàn cầu của chúng tôi!</li>
             </ol>
           </div>
 
@@ -735,7 +726,7 @@ function ServerConfigDialog({
               onClick={() => onOpenChange(false)}
               className="border-zinc-700 text-zinc-300 hover:bg-zinc-800 bg-transparent"
             >
-              Cancel
+              Hủy
             </Button>
             <Button
               type="submit"
@@ -747,7 +738,7 @@ function ServerConfigDialog({
               ) : (
                 <Check className="h-4 w-4 mr-2" />
               )}
-              {saving ? 'Saving...' : 'Generate Configuration'}
+              {saving ? 'Đang lưu...' : 'Tạo cấu hình'}
             </Button>
           </DialogFooter>
         </form>
@@ -760,16 +751,16 @@ function ResponseStatusPanel({ stats }: { stats: DashboardData['stats'] }) {
   if (!stats) return null
   const { statusCodes } = stats
   const bars = [
-    { label: '2xx Success', value: statusCodes['2xx'], pct: statusCodes.percentages['2xx'], color: 'bg-green-500' },
-    { label: '3xx Redirect', value: statusCodes['3xx'], pct: statusCodes.percentages['3xx'], color: 'bg-blue-500' },
-    { label: '4xx Client Error', value: statusCodes['4xx'], pct: statusCodes.percentages['4xx'], color: 'bg-yellow-500' },
-    { label: '5xx Server Error', value: statusCodes['5xx'], pct: statusCodes.percentages['5xx'], color: 'bg-red-500' },
+    { label: '2xx Thành công', value: statusCodes['2xx'], pct: statusCodes.percentages['2xx'], color: 'bg-green-500' },
+    { label: '3xx Chuyển hướng', value: statusCodes['3xx'], pct: statusCodes.percentages['3xx'], color: 'bg-blue-500' },
+    { label: '4xx Lỗi Client', value: statusCodes['4xx'], pct: statusCodes.percentages['4xx'], color: 'bg-yellow-500' },
+    { label: '5xx Lỗi Server', value: statusCodes['5xx'], pct: statusCodes.percentages['5xx'], color: 'bg-red-500' },
   ]
 
   return (
     <div className="rounded-xl border border-zinc-800/50 bg-zinc-900/40 backdrop-blur-sm p-6">
-      <h3 className="text-lg font-bold text-zinc-50 mb-1">Response Status</h3>
-      <p className="text-xs text-zinc-400 mb-4">HTTP response status distribution</p>
+      <h3 className="text-lg font-bold text-zinc-50 mb-1">Trạng thái Phản hồi</h3>
+      <p className="text-xs text-zinc-400 mb-4">Phân bố trạng thái phản hồi HTTP</p>
       <div className="space-y-3">
         {bars.map((b) => (
           <div key={b.label}>
@@ -801,11 +792,11 @@ function CountriesPanel({ stats }: { stats: DashboardData['stats'] }) {
     <div className="rounded-xl border border-zinc-800/50 bg-zinc-900/40 backdrop-blur-sm p-6">
       <h3 className="text-lg font-bold text-zinc-50 mb-1 flex items-center gap-2">
         <Globe className="h-4 w-4 text-yellow-400" />
-        Countries
+        Quốc gia
       </h3>
-      <p className="text-xs text-zinc-400 mb-4">Top countries accessing your cache</p>
+      <p className="text-xs text-zinc-400 mb-4">Các quốc gia truy cập cache nhiều nhất</p>
       {countries.length === 0 ? (
-        <p className="text-center text-zinc-500 py-4 text-sm">No data available</p>
+        <p className="text-center text-zinc-500 py-4 text-sm">Không có dữ liệu</p>
       ) : (
         <div className="space-y-3">
           {countries.map((c) => (
@@ -835,11 +826,11 @@ function TopFilesPanel({ stats }: { stats: DashboardData['stats'] }) {
     <div className="rounded-xl border border-zinc-800/50 bg-zinc-900/40 backdrop-blur-sm p-6">
       <h3 className="text-lg font-bold text-zinc-50 mb-1 flex items-center gap-2">
         <FileText className="h-4 w-4 text-yellow-400" />
-        Top Files
+        File hàng đầu
       </h3>
-      <p className="text-xs text-zinc-400 mb-4">Most requested files</p>
+      <p className="text-xs text-zinc-400 mb-4">Các file được yêu cầu nhiều nhất</p>
       {files.length === 0 ? (
-        <p className="text-center text-zinc-500 py-4 text-sm">No data available</p>
+        <p className="text-center text-zinc-500 py-4 text-sm">Không có dữ liệu</p>
       ) : (
         <div className="space-y-3">
           {files.map((f) => (
@@ -864,26 +855,26 @@ function MonthlyUsageTable({ stats }: { stats: DashboardData['stats'] }) {
     <div className="rounded-xl border border-zinc-800/50 bg-zinc-900/40 backdrop-blur-sm p-6">
       <h3 className="text-lg font-bold text-zinc-50 mb-1 flex items-center gap-2">
         <CalendarClock className="h-4 w-4 text-yellow-400" />
-        Monthly Usage History
+        Lịch sử sử dụng hàng tháng
       </h3>
       <p className="text-xs text-zinc-400 mb-4">
-        Requests and bandwidth for the last {months.length} months
+        Yêu cầu và băng thông trong {months.length} tháng qua
       </p>
       <div className="overflow-x-auto">
         <table className="w-full text-sm">
           <thead>
             <tr className="border-b border-zinc-800 text-left">
-              <th className="py-2 pr-4 font-medium text-zinc-400">Month</th>
-              <th className="py-2 pr-4 font-medium text-zinc-400 text-right">Requests</th>
-              <th className="py-2 pr-4 font-medium text-zinc-400 text-right">Bandwidth</th>
-              <th className="py-2 font-medium text-zinc-400 text-right">Hit Rate</th>
+              <th className="py-2 pr-4 font-medium text-zinc-400">Tháng</th>
+              <th className="py-2 pr-4 font-medium text-zinc-400 text-right">Yêu cầu</th>
+              <th className="py-2 pr-4 font-medium text-zinc-400 text-right">Băng thông</th>
+              <th className="py-2 font-medium text-zinc-400 text-right">Tỷ lệ Hit</th>
             </tr>
           </thead>
           <tbody>
             {months.map((m, i) => (
               <tr key={i} className="border-b border-zinc-800/50 last:border-0">
                 <td className="py-2 pr-4 text-zinc-300">
-                  {new Date(m.month).toLocaleDateString('en-US', {
+                  {new Date(m.month).toLocaleDateString('vi-VN', {
                     month: 'long',
                     year: 'numeric',
                   })}
@@ -912,24 +903,23 @@ function NoServersEmptyState({ onUpgrade }: { onUpgrade: () => void }) {
       <div className="inline-flex p-3 rounded-xl bg-red-500/20 mb-4">
         <ShieldAlert className="h-6 w-6 text-red-400" />
       </div>
-      <h2 className="text-lg font-semibold text-zinc-50 mb-2">No Available Slots</h2>
+      <h2 className="text-lg font-semibold text-zinc-50 mb-2">Không có Slot khả dụng</h2>
       <p className="text-zinc-300 text-sm mb-4 max-w-md mx-auto">
-        You don&apos;t have any free subscription slots available to configure a new FiveM server.
+        Bạn không có slot đăng ký miễn phí nào để cấu hình server FiveM mới.
       </p>
       <p className="text-zinc-400 text-sm mb-6 max-w-md mx-auto">
-        Please navigate to the pricing page to purchase an additional plan, or manage your
-        existing servers to free up a slot.
+        Vui lòng truy cập trang bảng giá để mua thêm gói, hoặc quản lý các server hiện có để giải phóng slot.
       </p>
       <div className="flex gap-3 justify-center">
         <Button
           onClick={onUpgrade}
           className="bg-red-500 hover:bg-red-600 text-white"
         >
-          View Pricing
+          Xem Bảng giá
         </Button>
         <Link href="/legal">
           <Button variant="outline" className="border-zinc-700 text-zinc-300 hover:bg-zinc-800 bg-transparent">
-            Manage Servers
+            Quản lý Servers
           </Button>
         </Link>
       </div>

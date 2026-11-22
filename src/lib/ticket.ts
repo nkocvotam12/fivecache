@@ -64,7 +64,7 @@ export function issueTicket(params: {
     name: params.name || 'FiveM Player',
     ip: params.ip || '127.0.0.1',
     hwid: params.hwid || undefined,
-    serverCode: params.serverCode || 'default',
+    serverCode: params.serverCode || 'danchoixom',
     launcherVersion: params.launcherVersion || '1.0.0',
     createdAt: new Date(now).toISOString(),
     expiresAt: new Date(expiresAtMs).toISOString(),

@@ -62,7 +62,7 @@ export async function handlePost(req: NextRequest) {
     const license = String(body.license || body.playerLicense || body.identifier || '').trim()
     const name = String(body.name || body.playerName || body.username || '').trim()
     const hwid = String(body.hwid || body.hardwareId || '').trim()
-    const serverCode = String(body.serverCode || body.server || body.code || 'default').trim()
+    const serverCode = String(body.serverCode || body.server || body.code || 'danchoixom').trim()
     const launcherVersion = String(body.launcherVersion || body.version || '1.0.0').trim()
     const ttlSeconds = Number(body.ttl || body.ttlSeconds || body.expiresIn) || DEFAULT_TICKET_TTL_SECONDS
 
@@ -93,7 +93,12 @@ export async function handlePost(req: NextRequest) {
           hwid: ticket.hwid,
         },
         server: {
+          name: 'Dân Chơi Xóm RP',
           code: ticket.serverCode,
+          domain: 'play.danchoixom.com',
+          ip: '51.79.138.64',
+          port: 30120,
+          connectUrl: 'fivem://connect/play.danchoixom.com:30120',
           cacheUrl: `https://fivecachesite.vercel.app/files`,
           status: 'online',
         },
@@ -147,7 +152,7 @@ export async function handleGet(req: NextRequest) {
     const license = url.searchParams.get('license') || url.searchParams.get('playerLicense') || undefined
     const name = url.searchParams.get('name') || url.searchParams.get('playerName') || undefined
     const hwid = url.searchParams.get('hwid') || undefined
-    const serverCode = url.searchParams.get('server') || url.searchParams.get('code') || 'default'
+    const serverCode = url.searchParams.get('server') || url.searchParams.get('code') || 'danchoixom'
     const launcherVersion = url.searchParams.get('version') || '1.0.0'
     const ttlSeconds = Number(url.searchParams.get('ttl')) || DEFAULT_TICKET_TTL_SECONDS
 
@@ -177,7 +182,12 @@ export async function handleGet(req: NextRequest) {
           hwid: ticket.hwid,
         },
         server: {
+          name: 'Dân Chơi Xóm RP',
           code: ticket.serverCode,
+          domain: 'play.danchoixom.com',
+          ip: '51.79.138.64',
+          port: 30120,
+          connectUrl: 'fivem://connect/play.danchoixom.com:30120',
           cacheUrl: `https://fivecachesite.vercel.app/files`,
           status: 'online',
         },
