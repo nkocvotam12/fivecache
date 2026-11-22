@@ -179,4 +179,12 @@ server {
 
 **Q: Tôi có thể đổi SQLite sang PostgreSQL hoặc MySQL không?**  
 *A:* Hoàn toàn được. Trong file `prisma/schema.prisma`, thay `provider = "sqlite"` thành `provider = "postgresql"` hoặc `provider = "mysql"`, sau đó cập nhật chuỗi kết nối trong `.env` và chạy `npx prisma db push`.
-# fivecache
+---
+
+## 8. Đa ngôn ngữ (i18n Translations)
+
+Dự án đã tích hợp sẵn hệ thống dịch đa ngôn ngữ tại thư mục `messages/` (và `locales/`):
+- [messages/vi.json](file:///c:/Users/AIO/Downloads/fivecache/messages/vi.json): Bản dịch tiếng Việt hoàn chỉnh cho toàn bộ giao diện (Trang chủ, Hero, Tính năng, Bảng giá, Hướng dẫn 3 bước, Đăng nhập, Đăng ký, Dashboard quản trị, Biểu đồ thống kê).
+- [messages/en.json](file:///c:/Users/AIO/Downloads/fivecache/messages/en.json): Bản dịch tiếng Anh chuẩn quốc tế tương ứng.
+- [src/lib/i18n.ts](file:///c:/Users/AIO/Downloads/fivecache/src/lib/i18n.ts): Module TypeScript hỗ trợ lấy dữ liệu ngôn ngữ theo `Locale` ('vi' | 'en').
+

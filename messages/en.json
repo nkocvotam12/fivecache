@@ -1,0 +1,306 @@
+{
+  "common": {
+    "appName": "FiveCache",
+    "loading": "Loading...",
+    "save": "Save",
+    "saving": "Saving...",
+    "cancel": "Cancel",
+    "confirm": "Confirm",
+    "delete": "Delete",
+    "edit": "Edit",
+    "back": "Back",
+    "backToHome": "Back to homepage",
+    "copy": "Copy",
+    "copied": "Copied to clipboard!",
+    "actions": "Actions",
+    "status": "Status",
+    "active": "Active",
+    "blocked": "Blocked",
+    "unknown": "Unknown",
+    "error": "Error",
+    "success": "Success",
+    "networkError": "Network error. Please try again."
+  },
+  "nav": {
+    "home": "Home",
+    "blog": "Blog",
+    "features": "Features",
+    "pricing": "Pricing",
+    "howItWorks": "How it Works",
+    "shieldCdn": "Shield CDN",
+    "dashboard": "Dashboard",
+    "login": "Login",
+    "signup": "Sign Up",
+    "logout": "Log out"
+  },
+  "hero": {
+    "badge": "⚡ The #1 CDN for FiveM Servers",
+    "titlePrefix": "Supercharge your FiveM Server with",
+    "titleHighlight": "Lightning-Fast CDN",
+    "description": "Ultra-fast CDN designed specifically for FiveM cache files. Deploy globally, cache automatically, and deliver resources to players in milliseconds.",
+    "ctaGetStarted": "Get Started Free",
+    "ctaPricing": "View Pricing",
+    "guarantee": "14-day free trial • No credit card required • 60-second setup"
+  },
+  "features": {
+    "sectionBadge": "Features",
+    "title": "Built for High-Performance FiveM Communities",
+    "subtitle": "Everything you need to deliver your FiveM cache files faster and more reliably than traditional hosting.",
+    "cards": {
+      "cacheManagement": {
+        "title": "Cache File Management",
+        "description": "Streamline your FiveM cache file management with integrated CDN tools and instant propagation."
+      },
+      "monitoring": {
+        "title": "Cache Performance Monitoring",
+        "description": "Monitor cache hit rates, player download speeds, and edge delivery performance in real-time."
+      },
+      "fastCdn": {
+        "title": "Lightning-Fast Global CDN",
+        "description": "Deliver FiveM resources (.ytd, .yft, maps) with blazing speed across our global edge network."
+      }
+    },
+    "secondary": {
+      "fastDelivery": {
+        "title": "Fast Content Delivery",
+        "description": "Deliver FiveM cache files and resources quickly with a high-speed global CDN network."
+      },
+      "seamlessLogging": {
+        "title": "Seamless Cache Logging",
+        "description": "Easily track and store cache access logs and delivery analytics for better insights."
+      },
+      "optimizedFiveM": {
+        "title": "Optimized for FiveM Servers",
+        "description": "Specifically tailored to meet the caching needs of FiveM game servers and communities."
+      },
+      "simpleIntegration": {
+        "title": "Simple Cache Integration",
+        "description": "Set up and integrate FiveCache with your FiveM server using a single line in server.cfg."
+      },
+      "reliablePerformance": {
+        "title": "Reliable Cache Performance",
+        "description": "Ensure consistent and dependable cache delivery performance for your players 24/7."
+      },
+      "scalableSolution": {
+        "title": "Scalable Cache Solution",
+        "description": "Grow effortlessly with cache infrastructure designed for high-traffic FiveM servers."
+      }
+    }
+  },
+  "stats": {
+    "filesServed": "Cache Files Served",
+    "activeServers": "Active FiveM Servers",
+    "edgeLocations": "Global Edge Locations",
+    "avgResponse": "Avg Cache Response"
+  },
+  "howItWorks": {
+    "sectionBadge": "How it works",
+    "title": "Setup in 3 simple steps",
+    "subtitle": "Get your FiveM server connected to our global CDN network in under 60 seconds.",
+    "step1": {
+      "title": "Step 1: Add Configuration Line",
+      "description": "Add this single line to your FiveM server.cfg file:",
+      "instruction": "Replace SERVER_ID with your assigned cache identifier from dashboard."
+    },
+    "step2": {
+      "title": "Step 2: Restart Server",
+      "description": "Simply restart your FiveM server to activate the CDN integration. No additional configuration needed."
+    },
+    "step3": {
+      "title": "Step 3: Automatic Caching",
+      "description": "Your server assets are now served globally! Players download resources from the nearest edge location."
+    },
+    "behindScenes": {
+      "title": "Behind the Scenes",
+      "subtitle": "Here's what happens when a player connects to your server",
+      "routingTitle": "Intelligent Request Routing",
+      "step1": "Player connects to your FiveM server and requests cache files",
+      "step2": "FiveCache automatically routes the request to the nearest edge location",
+      "step3": "Cache files are delivered at lightning speed thanks to Cloudflare CDN",
+      "step4": "All file delivery is offloaded, so your main server stays focused only on gameplay tickrate",
+      "step5": "Real-time analytics track performance and optimize future requests",
+      "benefitsTitle": "Benefits You'll See Immediately",
+      "benefits": [
+        "Faster player connection times",
+        "Reduced server bandwidth usage",
+        "Global reach for international players",
+        "Improved server performance & no texture loss",
+        "Real-time delivery analytics",
+        "99.9% uptime guarantee"
+      ],
+      "cfxDocs": "Official Cfx Resource Caching Guide"
+    }
+  },
+  "pricing": {
+    "sectionBadge": "Pricing",
+    "title": "Simple, Transparent Pricing",
+    "subtitle": "Choose the perfect plan for your FiveM server community. Upgrade or downgrade anytime.",
+    "period": "/month",
+    "ctaStart": "Get Started",
+    "ctaContact": "Contact Sales",
+    "mostPopular": "Most Popular",
+    "plans": {
+      "hobby": {
+        "name": "Hobby",
+        "description": "For single FiveM servers getting started with caching.",
+        "features": [
+          "50GB NVMe SSD cache storage",
+          "Unlimited traffic bandwidth",
+          "Public domain *.fivecache.site",
+          "Standard email support",
+          "Basic real-time statistics",
+          "1 FiveM server slot"
+        ]
+      },
+      "proPlus": {
+        "name": "Pro Plus",
+        "description": "For serious communities or multi-server networks.",
+        "features": [
+          "Unlimited NVMe SSD cache storage",
+          "Unlimited traffic bandwidth",
+          "Public domain *.fivecache.site",
+          "Priority 24/7 support",
+          "Advanced real-time analytics",
+          "5 FiveM server slots",
+          "Cache clearing & instant CDN purge"
+        ]
+      },
+      "enterprise": {
+        "name": "Enterprise",
+        "description": "For large gaming networks requiring custom infrastructure.",
+        "features": [
+          "Everything in Pro Plus",
+          "Custom CDN configuration",
+          "Dedicated edge locations",
+          "API & webhooks access",
+          "Custom domain support",
+          "Unlimited FiveM server slots",
+          "Dedicated account manager"
+        ]
+      }
+    }
+  },
+  "auth": {
+    "login": {
+      "title": "Welcome back",
+      "subtitle": "Sign in to your FiveCache account",
+      "cardTitle": "Sign in",
+      "cardDescription": "Enter your email and password to access your dashboard",
+      "emailLabel": "Email",
+      "emailPlaceholder": "name@example.com",
+      "passwordLabel": "Password",
+      "passwordPlaceholder": "••••••••",
+      "forgotPassword": "Forgot password?",
+      "submitButton": "Sign in",
+      "submitting": "Signing in...",
+      "noAccount": "Don't have an account?",
+      "signUpLink": "Sign up",
+      "demoHint": "Demo login:"
+    },
+    "signup": {
+      "title": "Create an account",
+      "subtitle": "Start your free 14-day trial",
+      "cardTitle": "Sign up",
+      "cardDescription": "Create your FiveCache account to accelerate your FiveM servers",
+      "nameLabel": "Full Name",
+      "namePlaceholder": "John Doe",
+      "emailLabel": "Email address",
+      "emailPlaceholder": "name@example.com",
+      "passwordLabel": "Password",
+      "passwordPlaceholder": "At least 8 characters",
+      "confirmPasswordLabel": "Confirm Password",
+      "confirmPasswordPlaceholder": "Re-enter your password",
+      "submitButton": "Create Account",
+      "submitting": "Creating account...",
+      "hasAccount": "Already have an account?",
+      "signInLink": "Sign in",
+      "termsAgreement": "By signing up, you agree to our Terms of Service and Privacy Policy."
+    },
+    "forgotPassword": {
+      "title": "Reset password",
+      "subtitle": "Enter your email address and we'll send you a recovery link",
+      "emailLabel": "Email address",
+      "submitButton": "Send Reset Link",
+      "submitting": "Sending link...",
+      "backToLogin": "Back to Sign In",
+      "checkEmail": "Please check your inbox for instructions to reset your password."
+    }
+  },
+  "dashboard": {
+    "title": "Dashboard",
+    "serversTitle": "My Servers",
+    "addServerButton": "Add Server",
+    "slotsUsage": "Server Slots",
+    "slotsDescription": "{used} of {total} slots used",
+    "upgradePlan": "Upgrade Plan",
+    "switchServer": "Select Server",
+    "cdnConfigTitle": "FiveM server.cfg Integration",
+    "cdnConfigDescription": "Add this line to your FiveM server.cfg file to route resource downloads through CDN:",
+    "copyConfig": "Copy Config Line",
+    "serverSettings": "Server Settings",
+    "clearCache": "Clear Cache & Purge CDN",
+    "clearCacheDesc": "Purge all cached resources from edge nodes. Available for Pro Plus plans.",
+    "clearCacheConfirm": "Are you sure you want to clear cache? Players will download files from the origin server again.",
+    "clearingCache": "Clearing...",
+    "metrics": {
+      "totalRequests": "Total Requests",
+      "bandwidthUsed": "Bandwidth Saved",
+      "storageUsed": "Storage Used",
+      "cacheHitRate": "Cache Hit Rate",
+      "filesCached": "Cached Files"
+    },
+    "charts": {
+      "monthlyTraffic": "Monthly Traffic & Bandwidth",
+      "statusCodeDistribution": "HTTP Status Codes",
+      "topCountries": "Top Visitor Countries",
+      "topFiles": "Most Downloaded Resources"
+    },
+    "addServerModal": {
+      "title": "Add New FiveM Server",
+      "description": "Enter your FiveM server details to generate a dedicated CDN endpoint.",
+      "nameLabel": "Server Name",
+      "namePlaceholder": "e.g. Los Santos Roleplay",
+      "ipLabel": "Server IP (Optional)",
+      "ipPlaceholder": "149.202.65.1",
+      "portLabel": "Server Port (Optional)",
+      "portPlaceholder": "30120",
+      "submitButton": "Create Server",
+      "creating": "Creating..."
+    },
+    "configModal": {
+      "title": "Edit Server Configuration",
+      "description": "Update the origin IP and Port for your FiveM server.",
+      "saveButton": "Save Changes",
+      "saving": "Saving..."
+    },
+    "noServers": {
+      "title": "No Servers Found",
+      "description": "You haven't added any FiveM servers yet. Click the button above to add your first server."
+    }
+  },
+  "blog": {
+    "title": "Blog & Guides",
+    "subtitle": "Articles, optimization guides, and updates for FiveM developers and server owners.",
+    "readMore": "Read article",
+    "backToList": "Back to all articles",
+    "readTime": "{minutes} min read",
+    "publishedOn": "Published on"
+  },
+  "legal": {
+    "title": "Legal Terms",
+    "subtitle": "Please read these terms carefully before using FiveCache services.",
+    "termsTab": "Terms of Service",
+    "privacyTab": "Privacy Policy"
+  },
+  "footer": {
+    "tagline": "Ultra-fast CDN designed specifically for FiveM cache files and game server resources.",
+    "product": "Product",
+    "support": "Support",
+    "legal": "Legal",
+    "terms": "Terms of Service",
+    "privacy": "Privacy Policy",
+    "documentation": "Documentation",
+    "discord": "Join Discord",
+    "rights": "All rights reserved. FiveCache is not affiliated with or endorsed by Rockstar Games or Cfx.re."
+  }
+}

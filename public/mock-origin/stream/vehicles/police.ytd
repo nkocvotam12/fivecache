@@ -1,0 +1,9 @@
+-- Mock YTD binary content for testing the shield file proxy.
+-- In production this would be the actual binary YTD file fetched from the FXServer.
+local function createPoliceVehicle()
+    local veh = CreateVehicle(GetHashKey("police"), 0, 0, 0, 0, true, false)
+    SetVehicleLivery(veh, 0)
+    return veh
+end
+
+RegisterNetEvent('police:spawn', createPoliceVehicle)

@@ -1,0 +1,306 @@
+{
+  "common": {
+    "appName": "FiveCache",
+    "loading": "Đang tải...",
+    "save": "Lưu thay đổi",
+    "saving": "Đang lưu...",
+    "cancel": "Hủy bỏ",
+    "confirm": "Xác nhận",
+    "delete": "Xóa",
+    "edit": "Chỉnh sửa",
+    "back": "Quay lại",
+    "backToHome": "Quay về trang chủ",
+    "copy": "Sao chép",
+    "copied": "Đã sao chép vào bộ nhớ tạm!",
+    "actions": "Hành động",
+    "status": "Trạng thái",
+    "active": "Đang hoạt động",
+    "blocked": "Đã chặn",
+    "unknown": "Không xác định",
+    "error": "Lỗi",
+    "success": "Thành công",
+    "networkError": "Lỗi kết nối mạng. Vui lòng thử lại sau."
+  },
+  "nav": {
+    "home": "Trang chủ",
+    "blog": "Tin tức",
+    "features": "Tính năng",
+    "pricing": "Bảng giá",
+    "howItWorks": "Cách hoạt động",
+    "shieldCdn": "Shield CDN",
+    "dashboard": "Bảng điều khiển",
+    "login": "Đăng nhập",
+    "signup": "Đăng ký",
+    "logout": "Đăng xuất"
+  },
+  "hero": {
+    "badge": "⚡ Dịch vụ CDN hàng đầu cho máy chủ FiveM",
+    "titlePrefix": "Tăng tốc máy chủ FiveM của bạn với",
+    "titleHighlight": "Hệ thống CDN siêu tốc",
+    "description": "Mạng phân phối nội dung (CDN) siêu tốc được thiết kế chuyên biệt cho file đệm FiveM. Triển khai toàn cầu, tự động lưu cache và phân phối tài nguyên tới người chơi chỉ trong vài mili-giây.",
+    "ctaGetStarted": "Bắt đầu dùng thử miễn phí",
+    "ctaPricing": "Xem bảng giá",
+    "guarantee": "Dùng thử miễn phí 14 ngày • Không cần thẻ tín dụng • Kích hoạt trong 60 giây"
+  },
+  "features": {
+    "sectionBadge": "Tính năng",
+    "title": "Tối ưu hóa cho các cộng đồng FiveM hiệu suất cao",
+    "subtitle": "Mọi công cụ bạn cần để tải file đệm FiveM nhanh hơn, ổn định hơn so với việc lưu trữ truyền thống.",
+    "cards": {
+      "cacheManagement": {
+        "title": "Quản lý file bộ nhớ đệm",
+        "description": "Tối ưu quy trình quản lý tệp cache FiveM với các công cụ CDN tích hợp và đồng bộ hóa tức thì."
+      },
+      "monitoring": {
+        "title": "Giám sát hiệu suất thời gian thực",
+        "description": "Theo dõi tỷ lệ Cache Hit, tốc độ tải của người chơi và hiệu năng máy chủ Edge theo thời gian thực."
+      },
+      "fastCdn": {
+        "title": "Mạng CDN Edge toàn cầu",
+        "description": "Phân phối tài nguyên FiveM (.ytd, .yft, bản đồ) với tốc độ vượt trội qua hệ thống máy chủ biên trên toàn cầu."
+      }
+    },
+    "secondary": {
+      "fastDelivery": {
+        "title": "Phân phối nội dung thần tốc",
+        "description": "Tải các tệp tài nguyên và cache FiveM cực nhanh nhờ mạng lưới CDN tốc độ cao."
+      },
+      "seamlessLogging": {
+        "title": "Nhật ký lưu trữ chi tiết",
+        "description": "Dễ dàng theo dõi và thống kê lưu lượng truy cập cache giúp bạn quản trị server tốt hơn."
+      },
+      "optimizedFiveM": {
+        "title": "Tối ưu hóa riêng cho FiveM",
+        "description": "Được thiết kế chuẩn hóa đáp ứng chính xác cơ chế tải tài nguyên của game FiveM."
+      },
+      "simpleIntegration": {
+        "title": "Tích hợp cực kỳ đơn giản",
+        "description": "Kết nối FiveCache vào máy chủ FiveM chỉ với một dòng cấu hình duy nhất trong file server.cfg."
+      },
+      "reliablePerformance": {
+        "title": "Hiệu suất ổn định 24/7",
+        "description": "Đảm bảo đường truyền tải file ổn định, không gián đoạn cho người chơi vào mọi khung giờ."
+      },
+      "scalableSolution": {
+        "title": "Khả năng mở rộng không giới hạn",
+        "description": "Dễ dàng nâng cấp hạ tầng để đáp ứng các máy chủ FiveM có hàng trăm, hàng nghìn người chơi đồng thời."
+      }
+    }
+  },
+  "stats": {
+    "filesServed": "Tệp cache đã phục vụ",
+    "activeServers": "Máy chủ FiveM hoạt động",
+    "edgeLocations": "Vị trí máy chủ Edge",
+    "avgResponse": "Tốc độ phản hồi trung bình"
+  },
+  "howItWorks": {
+    "sectionBadge": "Cách hoạt động",
+    "title": "Cài đặt dễ dàng trong 3 bước",
+    "subtitle": "Kết nối máy chủ FiveM của bạn với mạng CDN toàn cầu chỉ dưới 60 giây.",
+    "step1": {
+      "title": "Bước 1: Thêm dòng cấu hình",
+      "description": "Thêm một dòng duy nhất này vào tệp server.cfg của bạn:",
+      "instruction": "Thay thế SERVER_ID bằng mã ID được cấp trong bảng điều khiển của bạn."
+    },
+    "step2": {
+      "title": "Bước 2: Khởi động lại máy chủ",
+      "description": "Chỉ cần restart lại máy chủ FiveM để kích hoạt CDN. Không cần cài thêm bất kỳ plugin hay script phức tạp nào."
+    },
+    "step3": {
+      "title": "Bước 3: Tự động lưu trữ đệm",
+      "description": "Tài nguyên server của bạn đã sẵn sàng! Người chơi sẽ tự động tải file từ máy chủ CDN gần họ nhất."
+    },
+    "behindScenes": {
+      "title": "Cơ chế vận hành đằng sau",
+      "subtitle": "Những gì diễn ra khi người chơi kết nối vào máy chủ của bạn",
+      "routingTitle": "Định tuyến lưu lượng thông minh",
+      "step1": "Người chơi bấm vào server FiveM và gửi yêu cầu tải tài nguyên",
+      "step2": "FiveCache tự động chuyển hướng yêu cầu tới máy chủ CDN gần nhất",
+      "step3": "File đệm được truyền tải với tốc độ ánh sáng nhờ Cloudflare CDN",
+      "step4": "Toàn bộ băng thông tải file được giải phóng, máy chủ game của bạn không bị lag và chỉ tập trung xử lý gameplay",
+      "step5": "Hệ thống tự động thống kê hiệu suất và tối ưu hóa cho các lần tải sau",
+      "benefitsTitle": "Lợi ích thấy ngay lập tức",
+      "benefits": [
+        "Rút ngắn thời gian vào server của người chơi",
+        "Tiết kiệm tối đa băng thông cho máy chủ FiveM",
+        "Đường truyền ổn định cho người chơi quốc tế",
+        "Tăng FPS, chấm dứt hiện tượng mất texture (city bug)",
+        "Thống kê lưu lượng và lượt tải chi tiết theo thời gian thực",
+        "Cam kết thời gian hoạt động Uptime 99.9%"
+      ],
+      "cfxDocs": "Xem tài liệu Resource Caching chính thức từ Cfx.re"
+    }
+  },
+  "pricing": {
+    "sectionBadge": "Bảng giá",
+    "title": "Bảng giá đơn giản, minh bạch",
+    "subtitle": "Chọn gói phù hợp nhất với quy mô cộng đồng FiveM của bạn. Có thể nâng cấp hoặc hạ cấp bất kỳ lúc nào.",
+    "period": "/tháng",
+    "ctaStart": "Bắt đầu ngay",
+    "ctaContact": "Liên hệ kinh doanh",
+    "mostPopular": "Phổ biến nhất",
+    "plans": {
+      "hobby": {
+        "name": "Hobby",
+        "description": "Dành cho các máy chủ FiveM đơn lẻ mới bắt đầu tiếp cận giải pháp lưu trữ đệm.",
+        "features": [
+          "50GB bộ nhớ đệm NVMe SSD",
+          "Băng thông truyền tải không giới hạn",
+          "Tên miền công khai *.fivecache.site",
+          "Hỗ trợ tiêu chuẩn qua Email",
+          "Thống kê cơ bản thời gian thực",
+          "1 slot máy chủ FiveM"
+        ]
+      },
+      "proPlus": {
+        "name": "Pro Plus",
+        "description": "Dành cho các cộng đồng FiveM nghiêm túc hoặc chuỗi nhiều máy chủ.",
+        "features": [
+          "Bộ nhớ đệm NVMe SSD không giới hạn",
+          "Băng thông truyền tải không giới hạn",
+          "Tên miền công khai *.fivecache.site",
+          "Hỗ trợ kỹ thuật ưu tiên 24/7",
+          "Thống kê chi tiết chuyên sâu thời gian thực",
+          "5 slot máy chủ FiveM",
+          "Tính năng xóa cache & làm mới CDN tức thì"
+        ]
+      },
+      "enterprise": {
+        "name": "Doanh nghiệp",
+        "description": "Dành cho các mạng lưới game lớn cần hạ tầng máy chủ và CDN riêng biệt.",
+        "features": [
+          "Bao gồm tất cả quyền lợi của Pro Plus",
+          "Cấu hình CDN theo yêu cầu riêng",
+          "Cụm máy chủ Edge chuyên dụng",
+          "Truy cập hệ thống API & Webhooks",
+          "Hỗ trợ tên miền riêng tùy chỉnh",
+          "Không giới hạn số lượng slot máy chủ",
+          "Quản lý tài khoản chuyên trách riêng"
+        ]
+      }
+    }
+  },
+  "auth": {
+    "login": {
+      "title": "Chào mừng trở lại",
+      "subtitle": "Đăng nhập vào tài khoản FiveCache của bạn",
+      "cardTitle": "Đăng nhập",
+      "cardDescription": "Nhập email và mật khẩu để truy cập vào bảng điều khiển",
+      "emailLabel": "Địa chỉ Email",
+      "emailPlaceholder": "ten@example.com",
+      "passwordLabel": "Mật khẩu",
+      "passwordPlaceholder": "••••••••",
+      "forgotPassword": "Quên mật khẩu?",
+      "submitButton": "Đăng nhập",
+      "submitting": "Đang đăng nhập...",
+      "noAccount": "Chưa có tài khoản?",
+      "signUpLink": "Đăng ký ngay",
+      "demoHint": "Tài khoản dùng thử:"
+    },
+    "signup": {
+      "title": "Đăng ký tài khoản",
+      "subtitle": "Bắt đầu trải nghiệm dùng thử 14 ngày miễn phí",
+      "cardTitle": "Tạo tài khoản",
+      "cardDescription": "Tạo tài khoản FiveCache để tăng tốc các máy chủ FiveM của bạn",
+      "nameLabel": "Họ và tên",
+      "namePlaceholder": "Nguyễn Văn A",
+      "emailLabel": "Địa chỉ Email",
+      "emailPlaceholder": "ten@example.com",
+      "passwordLabel": "Mật khẩu",
+      "passwordPlaceholder": "Tối thiểu 8 ký tự",
+      "confirmPasswordLabel": "Xác nhận mật khẩu",
+      "confirmPasswordPlaceholder": "Nhập lại mật khẩu của bạn",
+      "submitButton": "Tạo tài khoản",
+      "submitting": "Đang khởi tạo...",
+      "hasAccount": "Đã có tài khoản rồi?",
+      "signInLink": "Đăng nhập",
+      "termsAgreement": "Bằng việc bấm đăng ký, bạn đồng ý với Điều khoản dịch vụ và Chính sách quyền riêng tư của chúng tôi."
+    },
+    "forgotPassword": {
+      "title": "Khôi phục mật khẩu",
+      "subtitle": "Nhập email của bạn để nhận liên kết đặt lại mật khẩu",
+      "emailLabel": "Địa chỉ Email",
+      "submitButton": "Gửi liên kết",
+      "submitting": "Đang gửi...",
+      "backToLogin": "Quay lại trang đăng nhập",
+      "checkEmail": "Vui lòng kiểm tra hộp thư đến để làm theo hướng dẫn đổi mật khẩu."
+    }
+  },
+  "dashboard": {
+    "title": "Bảng điều khiển",
+    "serversTitle": "Danh sách máy chủ",
+    "addServerButton": "Thêm máy chủ",
+    "slotsUsage": "Slot máy chủ",
+    "slotsDescription": "Đã dùng {used} / {total} slot",
+    "upgradePlan": "Nâng cấp gói",
+    "switchServer": "Chọn máy chủ",
+    "cdnConfigTitle": "Cấu hình tích hợp vào FiveM server.cfg",
+    "cdnConfigDescription": "Thêm dòng cấu hình sau vào file server.cfg để điều hướng việc tải file qua CDN:",
+    "copyConfig": "Sao chép dòng cấu hình",
+    "serverSettings": "Cài đặt máy chủ",
+    "clearCache": "Xóa bộ nhớ đệm & Thanh lọc CDN",
+    "clearCacheDesc": "Xóa toàn bộ file đệm trên các cụm máy chủ Edge. Tính năng dành cho gói Pro Plus trở lên.",
+    "clearCacheConfirm": "Bạn có chắc chắn muốn xóa bộ nhớ đệm không? Người chơi sẽ phải tải lại file gốc từ máy chủ game.",
+    "clearingCache": "Đang xóa...",
+    "metrics": {
+      "totalRequests": "Tổng lượt tải (Requests)",
+      "bandwidthUsed": "Băng thông đã tiết kiệm",
+      "storageUsed": "Dung lượng đệm đã dùng",
+      "cacheHitRate": "Tỷ lệ Cache Hit",
+      "filesCached": "Số tệp đã lưu đệm"
+    },
+    "charts": {
+      "monthlyTraffic": "Lưu lượng truy cập & Băng thông theo tháng",
+      "statusCodeDistribution": "Phân bổ mã trạng thái HTTP",
+      "topCountries": "Quốc gia truy cập nhiều nhất",
+      "topFiles": "Tài nguyên được tải nhiều nhất"
+    },
+    "addServerModal": {
+      "title": "Thêm máy chủ FiveM mới",
+      "description": "Nhập thông tin máy chủ của bạn để tạo địa chỉ CDN chuyên dụng.",
+      "nameLabel": "Tên máy chủ",
+      "namePlaceholder": "Ví dụ: Máy chủ Roleplay Hà Nội",
+      "ipLabel": "IP máy chủ gốc (Tùy chọn)",
+      "ipPlaceholder": "149.202.65.1",
+      "portLabel": "Cổng kết nối (Port - Tùy chọn)",
+      "portPlaceholder": "30120",
+      "submitButton": "Khởi tạo máy chủ",
+      "creating": "Đang tạo..."
+    },
+    "configModal": {
+      "title": "Chỉnh sửa cấu hình máy chủ",
+      "description": "Cập nhật IP và Cổng kết nối (Port) của máy chủ FiveM gốc.",
+      "saveButton": "Lưu thay đổi",
+      "saving": "Đang lưu..."
+    },
+    "noServers": {
+      "title": "Chưa có máy chủ nào",
+      "description": "Bạn chưa thêm máy chủ FiveM nào. Bấm nút phía trên để tạo máy chủ đầu tiên."
+    }
+  },
+  "blog": {
+    "title": "Tin tức & Hướng dẫn",
+    "subtitle": "Các bài viết, cẩm nang tối ưu hóa tài nguyên dành cho quản trị viên và lập trình viên FiveM.",
+    "readMore": "Đọc bài viết",
+    "backToList": "Quay lại danh sách bài viết",
+    "readTime": "{minutes} phút đọc",
+    "publishedOn": "Đăng ngày"
+  },
+  "legal": {
+    "title": "Điều khoản pháp lý",
+    "subtitle": "Vui lòng đọc kỹ các điều khoản này trước khi sử dụng dịch vụ của FiveCache.",
+    "termsTab": "Điều khoản dịch vụ",
+    "privacyTab": "Chính sách quyền riêng tư"
+  },
+  "footer": {
+    "tagline": "CDN tốc độ cao được thiết kế chuyên biệt cho file đệm và tài nguyên máy chủ FiveM.",
+    "product": "Sản phẩm",
+    "support": "Hỗ trợ",
+    "legal": "Pháp lý",
+    "terms": "Điều khoản dịch vụ",
+    "privacy": "Chính sách quyền riêng tư",
+    "documentation": "Tài liệu kỹ thuật",
+    "discord": "Tham gia Discord",
+    "rights": "Bảo lưu mọi quyền. FiveCache không liên kết hay được ủy quyền bởi Rockstar Games hoặc Cfx.re."
+  }
+}
