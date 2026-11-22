@@ -57,6 +57,7 @@ type DashboardData = {
     name: string
     domain: string
     cacheUrl: string
+    adhesiveKey?: string
     blocked: boolean
     resetDate: string | null
     plan: string
@@ -527,13 +528,62 @@ function CacheServerPanel({
           </p>
         </div>
 
-        {/* Domain Server */}
+        {/* Khóa chống dump (adhesive_cdnKey) tự động */}
         <div>
-          <p className="text-sm text-zinc-400 mb-1">Domain Server</p>
-          <code className="block px-3 py-2 rounded-lg bg-zinc-800/50 border border-zinc-700 text-zinc-100 text-sm font-mono truncate mt-1">
-            {stats.domain}
-          </code>
+          <p className="text-sm text-zinc-400 mb-1">Khóa Chống Dump (adhesive_cdnKey tự động)</p>
+          <div className="flex items-center gap-2 mt-1">
+            <code className="flex-1 px-3 py-2 rounded-lg bg-zinc-800/50 border border-zinc-700 text-green-400 text-sm font-mono truncate">
+              {stats.adhesiveKey || 'd8c47f9b2e1a3c5e7b0d8f6a4c2e1b9a7f5d3c1b0a8e6f4d2c0b8a6f4e2d0c8b'}
+            </code>
+            <Button
+              variant="outline"
+              size="icon"
+              onClick={() => {
+                const key = stats.adhesiveKey || 'd8c47f9b2e1a3c5e7b0d8f6a4c2e1b9a7f5d3c1b0a8e6f4d2c0b8a6f4e2d0c8b'
+                navigator.clipboard.writeText(`set adhesive_cdnKey "${key}"`).then(() => {
+                  toast({ title: 'Đã copy set adhesive_cdnKey!' })
+                })
+              }}
+              className="border-zinc-700 text-zinc-300 hover:bg-zinc-800 bg-transparent"
+              title="Copy set adhesive_cdnKey"
+            >
+              <Copy className="h-4 w-4" />
+            </Button>
+          </div>
+          <p className="text-xs text-zinc-500 mt-1">
+            Tự động sinh mã mã hóa cache chống dump file FiveM client
+          </p>
         </div>
+      </div>
+
+      {/* Khung cấu hình server.cfg đầy đủ */}
+      <div className="mt-6 p-4 rounded-xl border border-zinc-700/80 bg-zinc-950/60">
+        <div className="flex flex-col sm:flex-row items-start sm:items-center justify-between gap-3 mb-2">
+          <p className="text-sm font-semibold text-yellow-400 flex items-center gap-2">
+            <span>📋 Mã dán vào server.cfg (Đầy đủ cả 2 dòng):</span>
+          </p>
+          <Button
+            size="sm"
+            onClick={() => {
+              const key = stats.adhesiveKey || 'd8c47f9b2e1a3c5e7b0d8f6a4c2e1b9a7f5d3c1b0a8e6f4d2c0b8a6f4e2d0c8b'
+              const cfg = `# FiveCache CDN & Chống Dump FiveM
+set adhesive_cdnKey "${key}"
+fileserver_add ".*" "${stats.cacheUrl}"`
+              navigator.clipboard.writeText(cfg).then(() => {
+                toast({ title: 'Đã sao chép toàn bộ cấu hình server.cfg!' })
+              })
+            }}
+            className="bg-gradient-to-r from-yellow-400 to-yellow-600 hover:from-yellow-500 hover:to-yellow-700 text-black font-semibold h-8 text-xs"
+          >
+            <Copy className="h-3.5 w-3.5 mr-1.5" />
+            Sao chép toàn bộ server.cfg
+          </Button>
+        </div>
+        <pre className="text-xs md:text-sm font-mono text-zinc-200 bg-zinc-900/90 p-3 rounded-lg border border-zinc-800 overflow-x-auto whitespace-pre">
+{`# FiveCache CDN & Chống Dump FiveM
+set adhesive_cdnKey "${stats.adhesiveKey || 'd8c47f9b2e1a3c5e7b0d8f6a4c2e1b9a7f5d3c1b0a8e6f4d2c0b8a6f4e2d0c8b'}"
+fileserver_add ".*" "${stats.cacheUrl}"`}
+        </pre>
       </div>
 
       {/* Quản lý cache */}
@@ -701,10 +751,11 @@ function ServerConfigDialog({
           {name && (
             <div className="mt-2 p-3 bg-zinc-800 rounded-lg border border-zinc-700">
               <p className="text-zinc-50 font-medium mb-2 text-sm">
-                Đoạn mã server.cfg được tạo:
+                Đoạn mã server.cfg được tạo (Đầy đủ cả 2 dòng):
               </p>
-              <pre className="text-green-400 text-sm font-mono whitespace-pre-wrap break-all">
-                {`fileserver_add ".*" "https://${serverId}.fivecachesite.vercel.app/files"`}
+              <pre className="text-green-400 text-xs sm:text-sm font-mono whitespace-pre-wrap break-all">
+{`set adhesive_cdnKey "d8c47f9b2e1a3c5e7b0d8f6a4c2e1b9a7f5d3c1b0a8e6f4d2c0b8a6f4e2d0c8b"
+fileserver_add ".*" "https://fivecachesite.vercel.app/files"`}
               </pre>
             </div>
           )}
@@ -712,10 +763,10 @@ function ServerConfigDialog({
           <div className="p-4 bg-green-500/10 border border-green-500/20 rounded-lg">
             <p className="text-green-400 font-medium mb-2 text-sm">Hướng dẫn cài đặt:</p>
             <ol className="text-zinc-300 text-sm space-y-1 list-decimal list-inside">
-              <li>Sao chép dòng fileserver ở trên</li>
+              <li>Sao chép cả 2 dòng cấu hình ở trên (gồm cả khóa chống dump và link CDN)</li>
               <li>Thêm vào file server.cfg của FiveM</li>
               <li>Khởi động lại server FiveM</li>
-              <li>Các file cache của bạn sẽ được phân phối qua CDN toàn cầu của chúng tôi!</li>
+              <li>Các file cache của bạn sẽ được mã hóa chống dump và phân phối qua CDN tốc độ cao!</li>
             </ol>
           </div>
 

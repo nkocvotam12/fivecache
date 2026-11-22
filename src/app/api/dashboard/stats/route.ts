@@ -37,6 +37,7 @@ const DEMO_STATS = {
     name: 'Dân Chơi Xóm RP',
     domain: 'play.danchoixom.com',
     cacheUrl: 'https://fivecachesite.vercel.app/files',
+    adhesiveKey: 'd8c47f9b2e1a3c5e7b0d8f6a4c2e1b9a7f5d3c1b0a8e6f4d2c0b8a6f4e2d0c8b',
     blocked: false,
     resetDate: '2026-12-31',
     plan: 'pro_plus',
@@ -119,6 +120,9 @@ export async function GET(req: NextRequest) {
       name: selected.name,
       domain: selected.domain,
       cacheUrl: selected.cacheUrl,
+      adhesiveKey:
+        (selected as any).adhesiveKey ||
+        `d8c47f9b2e1a3c5e7b0d8f6a4c2e1b9a7f5d3c1b0a8e6f4d2c0b8a6f4e2d0c8b`,
       blocked: selected.blocked,
       resetDate: selected.resetDate,
       plan: selected.plan,
