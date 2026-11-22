@@ -21,14 +21,14 @@ export async function GET(req: NextRequest, { params }: { params: Promise<{ id: 
   const recentLogs = await db.shieldAccessLog.groupBy({
     by: ['status'],
     where: { shieldId: shield.id, timestamp: { gte: since } },
-    _count: { _all: true },
+    _count: { id: true },
   })
 
   const topBlockedReasons = await db.shieldAccessLog.groupBy({
     by: ['reason'],
     where: { shieldId: shield.id, status: 'blocked', timestamp: { gte: since } },
-    _count: { _all: true },
-    orderBy: { _count: { _all: 'desc' } },
+    _count: { id: true },
+    orderBy: { _count: { id: 'desc' } },
     take: 5,
   })
 
@@ -53,11 +53,11 @@ export async function GET(req: NextRequest, { params }: { params: Promise<{ id: 
           : 0,
     },
     last24h: {
-      allowed: recentLogs.find((l) => l.status === 'allowed')?._count._all ?? 0,
-      blocked: recentLogs.find((l) => l.status === 'blocked')?._count._all ?? 0,
-      topBlockedReasons: topBlockedReasons.map((r) => ({
+      allowed: recentLogs.find((l) => l.status === 'allowed')?._count?.id ?? 0,
+      blocked: recentLogs.find((l) => l.status === 'blocked')?._count?.id ?? 0,
+      topBlockedReasons: topBlockedReasons.map((r: any) => ({
         reason: r.reason,
-        count: r._count._all,
+        count: r._count?.id ?? 0,
       })),
     },
   })

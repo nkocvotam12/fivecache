@@ -26,11 +26,13 @@ import {
   Eye,
   X,
   Crown,
+  QrCode,
 } from 'lucide-react'
 import { AnimatedBackground } from '@/components/site/animated-background'
 import { SiteHeader } from '@/components/site/site-header'
 import { SiteFooter } from '@/components/site/site-footer'
 import { useToast } from '@/hooks/use-toast'
+import { VietQRModal } from '@/components/payment/vietqr-modal'
 import {
   Dialog,
   DialogContent,
@@ -274,14 +276,24 @@ export default function ShieldPage() {
         }}
       />
 
-      <TopupDialog
+      <VietQRModal
         open={topupOpen}
         onOpenChange={setTopupOpen}
-        onToppedUp={(newBalance) => {
-          setTopupOpen(false)
+        defaultAmount={299_000}
+        planName="Nạp tiền FiveCache Shield Anti-dump"
+        onSuccess={async (order) => {
+          try {
+            await fetch('/api/shield/topup-balance', {
+              method: 'POST',
+              headers: { 'Content-Type': 'application/json' },
+              body: JSON.stringify({ amount: order.amount }),
+            })
+          } catch (e) {
+            console.error(e)
+          }
           toast({
             title: 'Nạp tiền thành công',
-            description: `Số dư mới: ${formatVnd(newBalance)}`,
+            description: `Đã cộng ${formatVnd(order.amount)} vào tài khoản.`,
           })
           loadData()
         }}

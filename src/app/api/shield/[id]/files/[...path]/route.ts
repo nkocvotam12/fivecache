@@ -179,7 +179,7 @@ export async function GET(
   })
 
   // Return the obfuscated bytes as binary
-  return new NextResponse(obfuscated, {
+  return new NextResponse(new Uint8Array(obfuscated), {
     status: 200,
     headers: {
       'Content-Type': 'application/octet-stream',
