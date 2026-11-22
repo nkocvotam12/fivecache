@@ -3,9 +3,25 @@
 import { Check } from 'lucide-react'
 import Link from 'next/link'
 import type { PricingPlan } from '@/lib/plans'
+import { useLanguage } from '@/context/language-context'
 
 export function PricingCard({ plan }: { plan: PricingPlan }) {
-  const { name, price, currency, period, description, features, highlight, accentGradient, ctaLabel } = plan
+  const { t } = useLanguage()
+  const { id, price, currency, accentGradient, highlight } = plan
+
+  // Map to localized plan info if available
+  const planKey = id === 'hobby' ? 'hobby' : id === 'pro_plus' ? 'proPlus' : 'enterprise'
+  const localizedPlan = t.pricing.plans[planKey]
+
+  const name = localizedPlan?.name || plan.name
+  const description = localizedPlan?.description || plan.description
+  const features = localizedPlan?.features || plan.features
+  const period = t.pricing.period || plan.period
+  const ctaLabel = highlight
+    ? t.pricing.ctaStart
+    : id === 'custom_evarose'
+    ? t.pricing.ctaContact
+    : t.pricing.ctaStart
 
   return (
     <div
@@ -18,7 +34,7 @@ export function PricingCard({ plan }: { plan: PricingPlan }) {
       {highlight && (
         <div className="absolute -top-3 left-1/2 -translate-x-1/2">
           <span className="inline-block rounded-full bg-gradient-to-r from-yellow-400 to-yellow-600 px-3 py-1 text-xs font-bold uppercase tracking-wide text-black">
-            Most Popular
+            {t.pricing.mostPopular}
           </span>
         </div>
       )}
@@ -43,8 +59,8 @@ export function PricingCard({ plan }: { plan: PricingPlan }) {
       </p>
 
       <ul className="space-y-3 mb-8">
-        {features.map((f) => (
-          <li key={f} className="flex items-start gap-3 animate-slideInLeft">
+        {features.map((f, i) => (
+          <li key={i} className="flex items-start gap-3 animate-slideInLeft">
             <Check className="h-4 w-4 text-green-400 flex-shrink-0 mt-0.5" />
             <span className="text-zinc-300 text-sm">{f}</span>
           </li>
@@ -64,3 +80,4 @@ export function PricingCard({ plan }: { plan: PricingPlan }) {
     </div>
   )
 }
+

@@ -3,6 +3,7 @@
 import Link from 'next/link'
 import { ArrowRight, Database, Activity, Zap, Server, Globe, BarChart3, Shield, Workflow, Layers, TrendingUp, Network, Copy, Check, FileText, Check as CheckIcon, Sparkles } from 'lucide-react'
 import { useState } from 'react'
+import { useLanguage } from '@/context/language-context'
 
 import { AnimatedBackground } from '@/components/site/animated-background'
 import { SiteHeader } from '@/components/site/site-header'
@@ -48,6 +49,8 @@ export default function Home() {
 }
 
 function Hero() {
+  const { t } = useLanguage()
+
   return (
     <section className="relative z-10 py-20 lg:py-32">
       <div className="container mx-auto px-4 sm:px-6 lg:px-8">
@@ -62,23 +65,22 @@ function Hero() {
                 Update
               </span>
               <p className="text-xs sm:text-sm font-medium text-yellow-300">
-                Multi-Server Support Now Available
+                {t.hero.badge}
               </p>
               <ArrowRight className="ml-1 h-3 w-3 text-yellow-400" />
             </Link>
           </div>
 
           <h1 className="text-5xl md:text-7xl lg:text-8xl font-bold mb-8 text-white leading-tight">
-            Your FiveM cache.
+            {t.hero.titlePrefix}
             <br />
             <span className="bg-gradient-to-r from-yellow-400 via-yellow-500 to-yellow-600 bg-clip-text text-transparent animate-gradient">
-              Delivered globally.
+              {t.hero.titleHighlight}
             </span>
           </h1>
 
           <p className="text-xl md:text-2xl text-zinc-400 mb-10 max-w-4xl mx-auto leading-relaxed">
-            Ultra-fast CDN designed specifically for FiveM cache files. Deploy globally, cache
-            efficiently, deliver instantly to players worldwide.
+            {t.hero.description}
           </p>
 
           <div className="flex flex-col sm:flex-row gap-4 justify-center items-center">
@@ -86,10 +88,17 @@ function Hero() {
               href="/signup"
               className="inline-flex items-center justify-center gap-2 bg-gradient-to-r from-yellow-400 to-yellow-600 hover:from-yellow-500 hover:to-yellow-700 text-black px-10 py-5 text-lg font-semibold rounded-xl shadow-2xl shadow-yellow-500/30 hover:shadow-yellow-500/50 transition-all duration-300 hover:scale-105"
             >
-              Start Caching Now
+              {t.hero.ctaGetStarted}
               <ArrowRight className="h-5 w-5" />
             </Link>
+            <Link
+              href="#pricing"
+              className="inline-flex items-center justify-center gap-2 border border-zinc-700 hover:border-yellow-400/50 bg-zinc-900/60 hover:bg-zinc-800 text-zinc-200 px-8 py-5 text-lg font-semibold rounded-xl transition-all duration-300"
+            >
+              {t.hero.ctaPricing}
+            </Link>
           </div>
+          <p className="text-xs text-zinc-500 mt-4">{t.hero.guarantee}</p>
         </div>
 
         {/* Three feature cards */}
@@ -158,19 +167,20 @@ function FeatureCard({ card, delay }: FeatureCardProps) {
 }
 
 function FeaturesSection() {
+  const { t } = useLanguage()
+
   return (
     <section id="features" className="relative z-10 py-24">
       <div className="container mx-auto px-4 sm:px-6 lg:px-8">
         <div className="text-center mb-16">
           <p className="text-yellow-400 font-bold text-sm tracking-wider uppercase mb-2">
-            Features
+            {t.features.sectionBadge}
           </p>
           <h2 className="text-4xl md:text-5xl font-bold mb-6 text-white animate-fadeInUp">
-            Built for <span className="text-yellow-400">FiveM Cache</span> Performance
+            {t.features.title}
           </h2>
           <p className="text-xl text-zinc-400 max-w-3xl mx-auto animate-fadeInUp">
-            Everything you need to deliver your FiveM cache files faster and more reliably than
-            ever before.
+            {t.features.subtitle}
           </p>
         </div>
 
@@ -203,6 +213,14 @@ function FeaturesSection() {
 }
 
 function StatsSection() {
+  const { t } = useLanguage()
+  const statLabels = [
+    t.stats.filesServed,
+    t.stats.activeServers,
+    t.stats.edgeLocations,
+    t.stats.avgResponse,
+  ]
+
   return (
     <section className="relative z-10 py-16">
       <div className="container mx-auto px-4 sm:px-6 lg:px-8">
@@ -218,7 +236,7 @@ function StatsSection() {
                   {stat.value}
                 </div>
                 <div className="text-zinc-400 text-sm group-hover:text-zinc-300 transition-colors">
-                  {stat.label}
+                  {statLabels[i] || stat.label}
                 </div>
               </div>
             )
@@ -230,6 +248,7 @@ function StatsSection() {
 }
 
 function HowItWorks() {
+  const { t } = useLanguage()
   const [copied, setCopied] = useState(false)
   const configLine = `fileserver_add ".*" "https://SERVER_ID.fivecache.site/files"`
 
@@ -245,13 +264,13 @@ function HowItWorks() {
       <div className="container mx-auto px-4 sm:px-6 lg:px-8">
         <div className="text-center mb-16">
           <p className="text-yellow-400 font-bold text-sm tracking-wider uppercase mb-2">
-            How it works
+            {t.howItWorks.sectionBadge}
           </p>
           <h2 className="text-4xl md:text-5xl font-bold mb-6 text-white animate-fadeInUp">
-            Setup in <span className="text-yellow-400">3 simple steps</span>
+            {t.howItWorks.title}
           </h2>
           <p className="text-xl text-zinc-400 max-w-3xl mx-auto animate-fadeInUp">
-            Get your FiveM server connected to our global CDN network in under 60 seconds.
+            {t.howItWorks.subtitle}
           </p>
         </div>
 
@@ -260,10 +279,10 @@ function HowItWorks() {
           <div className="rounded-xl border border-zinc-800/50 bg-zinc-900/40 p-6 backdrop-blur-sm">
             <div className="flex items-center gap-2 mb-3">
               <Sparkles className="h-5 w-5 text-yellow-400" />
-              <h3 className="text-zinc-50 font-medium">Step 1: Add Configuration Line</h3>
+              <h3 className="text-zinc-50 font-medium">{t.howItWorks.step1.title}</h3>
             </div>
             <p className="text-zinc-400 text-sm mb-3">
-              Add this single line to your FiveM server.cfg file
+              {t.howItWorks.step1.description}
             </p>
             <div className="flex items-center justify-between gap-3 p-3 bg-zinc-800 rounded-lg border border-zinc-700 group">
               <code className="text-green-400 text-sm flex-1 font-mono overflow-x-auto whitespace-nowrap">
@@ -282,8 +301,7 @@ function HowItWorks() {
               </button>
             </div>
             <p className="text-zinc-400 text-sm mt-2">
-              Replace <code className="text-yellow-400">SERVER_ID</code> with your unique server
-              identifier from the dashboard
+              {t.howItWorks.step1.instruction}
             </p>
           </div>
         </div>
@@ -374,27 +392,21 @@ function BehindScenes() {
 }
 
 function PricingSection() {
+  const { t } = useLanguage()
+
   return (
     <section id="pricing" className="relative z-10 py-24">
       <div className="container mx-auto px-4 sm:px-6 lg:px-8">
         <div className="text-center mb-16">
           <p className="text-yellow-400 font-bold text-sm tracking-wider uppercase mb-2">
-            Pricing
+            {t.pricing.sectionBadge}
           </p>
           <h2 className="text-4xl md:text-5xl font-bold mb-6 text-white animate-fadeInUp">
-            Simple pricing for everyone.
+            {t.pricing.title}
           </h2>
           <p className="text-xl text-zinc-400 mb-8 max-w-3xl mx-auto animate-fadeInUp">
-            Choose an <span className="text-white font-medium">affordable plan</span> that&apos;s
-            packed with the best features for caching your FiveM resources, monitoring performance,
-            and keeping your players happy.
+            {t.pricing.subtitle}
           </p>
-          <div className="flex justify-center mb-8">
-            <div className="flex items-center gap-2 text-zinc-300">
-              <CheckIcon className="h-4 w-4 text-green-400" />
-              <span className="text-sm">48-hour money-back guarantee. No questions asked.</span>
-            </div>
-          </div>
         </div>
 
         <div className="grid md:grid-cols-3 gap-8 max-w-5xl mx-auto items-start">

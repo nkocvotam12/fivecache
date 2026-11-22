@@ -4,9 +4,12 @@ import Link from 'next/link'
 import { usePathname } from 'next/navigation'
 import { useEffect, useState } from 'react'
 import { Menu, X, Zap, Shield } from 'lucide-react'
+import { useLanguage } from '@/context/language-context'
+import { LanguageSwitcher } from '@/components/site/language-switcher'
 
 export function SiteHeader() {
   const pathname = usePathname()
+  const { t } = useLanguage()
   const [open, setOpen] = useState(false)
   const [user, setUser] = useState<{ name?: string | null; email: string } | null>(null)
   const [loading, setLoading] = useState(true)
@@ -34,69 +37,76 @@ export function SiteHeader() {
           </Link>
 
           {/* Desktop nav */}
-          <nav className="hidden md:flex items-center gap-8">
+          <nav className="hidden md:flex items-center gap-6 lg:gap-8">
             <Link
-              className="text-zinc-300 hover:text-yellow-400 transition-colors duration-300"
+              className="text-zinc-300 hover:text-yellow-400 transition-colors duration-300 text-sm font-medium"
               href="/blog"
             >
-              Blog
+              {t.nav.blog}
             </Link>
             <Link
-              className="text-zinc-300 hover:text-yellow-400 transition-colors duration-300"
+              className="text-zinc-300 hover:text-yellow-400 transition-colors duration-300 text-sm font-medium"
               href="/#features"
             >
-              Features
+              {t.nav.features}
             </Link>
             <Link
-              className="text-zinc-300 hover:text-yellow-400 transition-colors duration-300"
+              className="text-zinc-300 hover:text-yellow-400 transition-colors duration-300 text-sm font-medium"
               href="/#pricing"
             >
-              Pricing
+              {t.nav.pricing}
             </Link>
             <Link
-              className="text-zinc-300 hover:text-yellow-400 transition-colors duration-300"
+              className="text-zinc-300 hover:text-yellow-400 transition-colors duration-300 text-sm font-medium"
               href="/#how-it-works"
             >
-              How it Works
+              {t.nav.howItWorks}
             </Link>
             <Link
-              className="text-zinc-300 hover:text-yellow-400 transition-colors duration-300 inline-flex items-center gap-1"
+              className="text-zinc-300 hover:text-yellow-400 transition-colors duration-300 text-sm font-medium inline-flex items-center gap-1"
               href="/shield"
             >
               <Shield className="h-3.5 w-3.5" />
-              Shield CDN
+              {t.nav.shieldCdn}
             </Link>
+
+            {/* Language Switcher */}
+            <LanguageSwitcher />
+
             {!loading && user ? (
               <Link
                 href="/dashboard"
-                className="inline-flex items-center justify-center gap-2 text-sm bg-gradient-to-r from-yellow-400 to-yellow-600 hover:from-yellow-500 hover:to-yellow-700 text-black border-0 rounded-lg px-6 py-2 h-10 font-semibold shadow-lg shadow-yellow-500/25 hover:shadow-yellow-500/40 transition-all duration-300"
+                className="inline-flex items-center justify-center gap-2 text-sm bg-gradient-to-r from-yellow-400 to-yellow-600 hover:from-yellow-500 hover:to-yellow-700 text-black border-0 rounded-lg px-5 py-2 h-9 font-semibold shadow-lg shadow-yellow-500/25 hover:shadow-yellow-500/40 transition-all duration-300"
               >
-                Dashboard
+                {t.nav.dashboard}
               </Link>
             ) : (
               <Link
-                className="text-zinc-300 hover:text-yellow-400 transition-colors duration-300"
+                className="text-zinc-300 hover:text-yellow-400 transition-colors duration-300 text-sm font-medium"
                 href="/login"
               >
-                Login
+                {t.nav.login}
               </Link>
             )}
             <Link
               href={loading || user ? '/dashboard' : '/signup'}
-              className="inline-flex items-center justify-center gap-2 whitespace-nowrap text-sm bg-gradient-to-r from-yellow-400 to-yellow-600 hover:from-yellow-500 hover:to-yellow-700 text-black border-0 rounded-lg px-6 py-2 h-10 font-semibold shadow-lg shadow-yellow-500/25 hover:shadow-yellow-500/40 transition-all duration-300"
+              className="inline-flex items-center justify-center gap-2 whitespace-nowrap text-sm bg-gradient-to-r from-yellow-400 to-yellow-600 hover:from-yellow-500 hover:to-yellow-700 text-black border-0 rounded-lg px-5 py-2 h-9 font-semibold shadow-lg shadow-yellow-500/25 hover:shadow-yellow-500/40 transition-all duration-300"
             >
-              Get Started
+              {t.hero.ctaGetStarted}
             </Link>
           </nav>
 
-          {/* Mobile toggle */}
-          <button
-            className="md:hidden text-zinc-300 hover:text-zinc-50 transition-colors"
-            onClick={() => setOpen((o) => !o)}
-            aria-label="Toggle menu"
-          >
-            {open ? <X className="h-6 w-6" /> : <Menu className="h-6 w-6" />}
-          </button>
+          {/* Mobile controls */}
+          <div className="flex md:hidden items-center gap-2">
+            <LanguageSwitcher />
+            <button
+              className="text-zinc-300 hover:text-zinc-50 transition-colors p-1.5"
+              onClick={() => setOpen((o) => !o)}
+              aria-label="Toggle menu"
+            >
+              {open ? <X className="h-6 w-6" /> : <Menu className="h-6 w-6" />}
+            </button>
+          </div>
         </div>
       </div>
 
@@ -108,28 +118,28 @@ export function SiteHeader() {
             className="text-zinc-300 hover:text-yellow-400 transition-colors py-2"
             onClick={() => setOpen(false)}
           >
-            Blog
+            {t.nav.blog}
           </Link>
           <Link
             href="/#features"
             className="text-zinc-300 hover:text-yellow-400 transition-colors py-2"
             onClick={() => setOpen(false)}
           >
-            Features
+            {t.nav.features}
           </Link>
           <Link
             href="/#pricing"
             className="text-zinc-300 hover:text-yellow-400 transition-colors py-2"
             onClick={() => setOpen(false)}
           >
-            Pricing
+            {t.nav.pricing}
           </Link>
           <Link
             href="/#how-it-works"
             className="text-zinc-300 hover:text-yellow-400 transition-colors py-2"
             onClick={() => setOpen(false)}
           >
-            How it Works
+            {t.nav.howItWorks}
           </Link>
           <Link
             href="/shield"
@@ -137,21 +147,21 @@ export function SiteHeader() {
             onClick={() => setOpen(false)}
           >
             <Shield className="h-3.5 w-3.5" />
-            Shield CDN
+            {t.nav.shieldCdn}
           </Link>
           <Link
             href={user ? '/dashboard' : '/login'}
             className="text-zinc-300 hover:text-yellow-400 transition-colors py-2"
             onClick={() => setOpen(false)}
           >
-            {user ? 'Dashboard' : 'Login'}
+            {user ? t.nav.dashboard : t.nav.login}
           </Link>
           <Link
             href={user ? '/dashboard' : '/signup'}
-            className="inline-flex items-center justify-center bg-gradient-to-r from-yellow-400 to-yellow-600 hover:from-yellow-500 hover:to-yellow-700 text-black rounded-lg px-6 py-2 font-semibold"
+            className="inline-flex items-center justify-center bg-gradient-to-r from-yellow-400 to-yellow-600 hover:from-yellow-500 hover:to-yellow-700 text-black rounded-lg px-6 py-2.5 font-semibold text-center"
             onClick={() => setOpen(false)}
           >
-            Get Started
+            {t.hero.ctaGetStarted}
           </Link>
         </nav>
       )}

@@ -7,11 +7,14 @@ import { Mail, Lock, ArrowRight, ArrowLeft, Zap, Loader2, AlertCircle } from 'lu
 import { AnimatedBackground } from '@/components/site/animated-background'
 import { useRedirectIfAuthenticated } from '@/hooks/use-redirect-if-authenticated'
 import { useToast } from '@/hooks/use-toast'
+import { useLanguage } from '@/context/language-context'
+import { LanguageSwitcher } from '@/components/site/language-switcher'
 
 export default function LoginPage() {
   useRedirectIfAuthenticated()
   const router = useRouter()
   const { toast } = useToast()
+  const { t } = useLanguage()
   const [email, setEmail] = useState('')
   const [password, setPassword] = useState('')
   const [loading, setLoading] = useState(false)
@@ -51,8 +54,12 @@ export default function LoginPage() {
           className="absolute top-6 left-6 inline-flex items-center gap-2 text-zinc-400 hover:text-yellow-400 transition-colors text-sm"
         >
           <ArrowLeft className="h-4 w-4" />
-          Back to homepage
+          {t.common.backToHome}
         </Link>
+
+        <div className="absolute top-6 right-6">
+          <LanguageSwitcher />
+        </div>
 
         <div className="w-full max-w-md">
           {/* Logo */}
@@ -64,15 +71,15 @@ export default function LoginPage() {
             </Link>
           </div>
 
-          <h1 className="text-2xl font-bold text-zinc-50 text-center">Welcome back</h1>
+          <h1 className="text-2xl font-bold text-zinc-50 text-center">{t.auth.login.title}</h1>
           <p className="text-zinc-400 mt-2 text-center">
-            Sign in to your FiveCache account
+            {t.auth.login.subtitle}
           </p>
 
           <div className="mt-6 rounded-xl border border-zinc-800/50 bg-zinc-900/40 p-6 backdrop-blur-md">
-            <h2 className="text-xl text-zinc-50 mb-4">Sign in</h2>
+            <h2 className="text-xl text-zinc-50 mb-4">{t.auth.login.cardTitle}</h2>
             <p className="text-sm text-zinc-400 mb-6">
-              Enter your email and password to access your dashboard
+              {t.auth.login.cardDescription}
             </p>
 
             {error && (
@@ -84,7 +91,7 @@ export default function LoginPage() {
 
             <form onSubmit={handleSubmit} className="space-y-4">
               <div>
-                <label className="text-sm font-medium text-zinc-300 mb-1.5 block">Email</label>
+                <label className="text-sm font-medium text-zinc-300 mb-1.5 block">{t.auth.login.emailLabel}</label>
                 <div className="relative">
                   <Mail className="absolute left-3 top-1/2 -translate-y-1/2 h-4 w-4 text-zinc-500" />
                   <input
@@ -92,7 +99,7 @@ export default function LoginPage() {
                     required
                     value={email}
                     onChange={(e) => setEmail(e.target.value)}
-                    placeholder="you@example.com"
+                    placeholder={t.auth.login.emailPlaceholder}
                     className="w-full h-10 pl-10 pr-3 rounded-lg bg-zinc-800/60 border border-zinc-700 text-zinc-100 placeholder:text-zinc-500 focus:outline-none focus:ring-2 focus:ring-yellow-500/40 focus:border-yellow-500/50"
                   />
                 </div>
@@ -100,12 +107,12 @@ export default function LoginPage() {
 
               <div>
                 <div className="flex items-center justify-between mb-1.5">
-                  <label className="text-sm font-medium text-zinc-300">Password</label>
+                  <label className="text-sm font-medium text-zinc-300">{t.auth.login.passwordLabel}</label>
                   <Link
                     href="/forgot-password"
                     className="text-xs text-yellow-400 hover:text-yellow-300"
                   >
-                    Forgot password?
+                    {t.auth.login.forgotPassword}
                   </Link>
                 </div>
                 <div className="relative">
@@ -115,7 +122,7 @@ export default function LoginPage() {
                     required
                     value={password}
                     onChange={(e) => setPassword(e.target.value)}
-                    placeholder="••••••••"
+                    placeholder={t.auth.login.passwordPlaceholder}
                     className="w-full h-10 pl-10 pr-3 rounded-lg bg-zinc-800/60 border border-zinc-700 text-zinc-100 placeholder:text-zinc-500 focus:outline-none focus:ring-2 focus:ring-yellow-500/40 focus:border-yellow-500/50"
                   />
                 </div>
@@ -130,30 +137,26 @@ export default function LoginPage() {
                   <Loader2 className="h-4 w-4 animate-spin" />
                 ) : (
                   <>
-                    Sign in
+                    {t.auth.login.submitButton}
                     <ArrowRight className="h-4 w-4" />
                   </>
                 )}
               </button>
             </form>
 
-            <div className="relative flex justify-center text-xs uppercase mt-6">
-              <span className="bg-zinc-900 px-2 text-zinc-400">Prefer to sign up?</span>
-            </div>
-
-            <p className="text-center text-sm mt-4">
-              Don&apos;t have an account?{' '}
+            <p className="text-center text-sm mt-6 text-zinc-400">
+              {t.auth.login.noAccount}{' '}
               <Link
                 href="/signup"
                 className="text-yellow-400 hover:text-yellow-300 font-medium"
               >
-                Sign up
+                {t.auth.login.signUpLink}
               </Link>
             </p>
           </div>
 
           <p className="pt-4 text-xs text-zinc-500 text-center">
-            Demo login:{' '}
+            {t.auth.login.demoHint}{' '}
             <code className="text-yellow-400">demo@fivecache.site</code> /{' '}
             <code className="text-yellow-400">demo1234</code>
           </p>
