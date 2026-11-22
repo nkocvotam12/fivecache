@@ -9,8 +9,10 @@ import { useRedirectIfAuthenticated } from '@/hooks/use-redirect-if-authenticate
 import { useToast } from '@/hooks/use-toast'
 
 export default function SignupPage() {
-  useRedirectIfAuthenticated()
   const router = useRouter()
+  useEffect(() => {
+    router.replace('/dashboard')
+  }, [router])
   const { toast } = useToast()
   const [name, setName] = useState('')
   const [email, setEmail] = useState('')

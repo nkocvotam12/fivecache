@@ -1,4 +1,4 @@
-// Seed script - run with: bun run scripts/seed.ts
+// Script Seed dữ liệu - chạy bằng lệnh: bun run scripts/seed.ts
 import { PrismaClient } from '@prisma/client'
 import { hashPassword } from '../src/lib/auth'
 
@@ -7,131 +7,131 @@ const db = new PrismaClient()
 const BLOG_POSTS = [
   {
     slug: 'multi-server-support',
-    title: 'Manage Multiple Servers with One Account',
-    category: 'New Feature',
+    title: 'Quản lý Nhiều Server với Một Tài khoản',
+    category: 'Tính năng mới',
     date: new Date('2025-12-06'),
     readTime: 2,
     excerpt:
-      'We are excited to announce a major update to FiveCache: Multi-Server Support.',
-    content: `We are excited to announce a major update to **FiveCache**: *Multi-Server Support*.
+      'Chúng tôi vui mừng thông báo bản cập nhật lớn cho FiveCache: Hỗ trợ Đa Server.',
+    content: `Chúng tôi vui mừng thông báo bản cập nhật lớn cho **FiveCache**: *Hỗ trợ Đa Server*.
 
-Many of our users manage communities with multiple FiveM server instances—whether it's a roleplay server, an arena server, or a development environment. Until now, managing the cache for each of these required separate setups or workarounds.
+Nhiều người dùng của chúng tôi quản lý cộng đồng với nhiều phiên bản server FiveM khác nhau—dù đó là server roleplay, server đấu trường hay môi trường phát triển. Cho đến nay, việc quản lý cache cho từng server này đòi hỏi phải thiết lập riêng biệt hoặc dùng các giải pháp tạm thời.
 
-## What's New?
+## Có gì mới?
 
-- **Unified Dashboard:** View and manage all your servers from a single dashboard.
-- **Isolated Caches:** Each server gets its own isolated cache environment, ensuring no conflicts between resources.
-- **Scalable Plans:** Upgrade individual servers as needed without affecting your other instances.
+- **Bảng điều khiển hợp nhất:** Xem và quản lý tất cả các server của bạn từ một bảng điều khiển duy nhất.
+- **Cache biệt lập:** Mỗi server có một môi trường cache riêng biệt, đảm bảo không xảy ra xung đột giữa các tài nguyên.
+- **Gói dịch vụ linh hoạt:** Nâng cấp từng server khi cần mà không ảnh hưởng đến các phiên bản khác.
 
-This update simplifies the workflow for community owners and developers, allowing you to focus on what matters most: creating great experiences for your players.
+Bản cập nhật này đơn giản hóa quy trình làm việc cho các chủ sở hữu cộng đồng và nhà phát triển, cho phép bạn tập trung vào điều quan trọng nhất: tạo ra trải nghiệm tuyệt vời cho người chơi.
 
-## How to get started
+## Cách bắt đầu
 
-Simply log in to your dashboard, and you will see the new option to "Add Server". Follow the setup guide to integrate FiveCache with your additional server instances.
+Chỉ cần đăng nhập vào bảng điều khiển của bạn, và bạn sẽ thấy tùy chọn mới "Thêm Server". Làm theo hướng dẫn thiết lập để tích hợp FiveCache với các phiên bản server bổ sung của bạn.
 
-> Go to Dashboard to try it now.`,
+> Truy cập Bảng điều khiển để dùng thử ngay.`,
   },
   {
     slug: 'optimizing-fivem-assets',
-    title: 'Optimizing FiveM Assets for Performance',
-    category: 'Education',
+    title: 'Tối ưu hóa Tài nguyên FiveM để Tăng hiệu năng',
+    category: 'Giáo dục',
     date: new Date('2025-11-20'),
     readTime: 5,
     excerpt:
-      'Unoptimized cars, clothing, and maps are the #1 cause of texture loss, low FPS, and client crashes.',
-    content: `Running a high-performance FiveM server requires more than just good hardware; it requires optimized assets. Unoptimized cars, clothing, and maps are the #1 cause of texture loss (the dreaded "city bug"), low FPS, and client crashes.
+      'Xe, quần áo và bản đồ chưa được tối ưu là nguyên nhân số 1 gây mất texture, FPS thấp và crash client.',
+    content: `Vận hành một server FiveM hiệu năng cao không chỉ cần phần cứng tốt; mà còn cần tài nguyên được tối ưu. Xe, quần áo và bản đồ chưa được tối ưu là nguyên nhân số 1 gây mất texture (lỗi "city bug" đáng sợ), FPS thấp và crash client.
 
-In this guide, we'll cover the essential steps to ensure your custom assets are lean, mean, and ready for high player counts.
+Trong hướng dẫn này, chúng ta sẽ đi qua các bước thiết yếu để đảm bảo tài nguyên tùy chỉnh của bạn gọn nhẹ, mạnh mẽ và sẵn sàng cho số lượng người chơi cao.
 
-## Texture Compression (YTD)
+## Nén Texture (YTD)
 
-Textures are often the heaviest part of any asset. Many car mods come with 4K or even 8K textures that are completely unnecessary for a game engine like GTA V.
+Texture thường là phần nặng nhất của bất kỳ tài nguyên nào. Nhiều mod xe đi kèm texture 4K hoặc thậm chí 8K hoàn toàn không cần thiết cho một game engine như GTA V.
 
-- **Resize textures:** Downscale textures to 1024x1024 or 2048x2048 max for large vehicles.
-- **Use DXT compression:** Ensure your .ytd files use proper DXT1/DXT5 compression.
-- **Target size:** Aim for vehicle .ytd files under 10MB. Anything over 16MB can cause texture loss issues.
+- **Thay đổi kích thước texture:** Giảm kích thước texture xuống tối đa 1024x1024 hoặc 2048x2048 cho các phương tiện lớn.
+- **Sử dụng nén DXT:** Đảm bảo các file .ytd của bạn sử dụng nén DXT1/DXT5 phù hợp.
+- **Kích thước mục tiêu:** Hướng đến các file .ytd của xe dưới 10MB. Bất kỳ file nào trên 16MB đều có thể gây ra vấn đề mất texture.
 
-## Polygon Counts (YFT)
+## Số lượng Đa giác (YFT)
 
-High-poly models look great in renders but can kill game performance. The game engine has to calculate lighting and physics for every single polygon.
+Các mô hình đa giác cao trông tuyệt vời khi render nhưng có thể giết chết hiệu năng game. Game engine phải tính toán ánh sáng và vật lý cho từng đa giác một.
 
-For vehicle models, try to stick to the following guidelines:
+Đối với mô hình xe, cố gắng tuân thủ các hướng dẫn sau:
 
-| LOD | Polygons |
+| LOD | Số đa giác |
 | --- | --- |
-| L0 (High) | Under 200k polys |
-| L1 (Med) | Under 50k polys |
-| L2 (Low) | Under 5k polys |
+| L0 (Cao) | Dưới 200k đa giác |
+| L1 (Trung bình) | Dưới 50k đa giác |
+| L2 (Thấp) | Dưới 5k đa giác |
 
-Always ensure your models have proper LODs (Level of Detail). Without LODs, the game renders the full high-poly model even when the car is a mile away.
+Luôn đảm bảo mô hình của bạn có LOD (Mức độ chi tiết) phù hợp. Nếu không có LOD, game sẽ render toàn bộ mô hình đa giác cao ngay cả khi xe ở cách xa một dặm.
 
-## Streaming & Resource Management
+## Streaming & Quản lý Tài nguyên
 
-How you organize your resources matters just as much as the assets themselves.
+Cách bạn tổ chức tài nguyên cũng quan trọng không kém bản thân các tài nguyên đó.
 
-### Combine Resources
-Instead of having 50 individual car resources, combine them into a single pack. This reduces the server overhead of mounting resources.
+### Kết hợp Tài nguyên
+Thay vì có 50 tài nguyên xe riêng lẻ, hãy kết hợp chúng thành một gói duy nhất. Điều này giảm chi phí vận hành của server khi mount tài nguyên.
 
-### Virtual Memory
-Monitor your server's physical memory usage. Oversized assets can cause "Out of Memory" crashes for players with lower-end PCs.
+### Bộ nhớ ảo
+Theo dõi mức sử dụng bộ nhớ vật lý của server. Tài nguyên quá lớn có thể gây crash "Hết bộ nhớ" cho người chơi có PC cấu hình thấp.
 
-## Conclusion
+## Kết luận
 
-Optimization is an ongoing process. By following these guidelines, you ensure a smoother experience for your community and reduce the number of support tickets about "texture loss" or "crashing".
+Tối ưu hóa là một quá trình liên tục. Bằng cách tuân thủ các hướng dẫn này, bạn đảm bảo trải nghiệm mượt mà hơn cho cộng đồng và giảm số lượng ticket hỗ trợ về "mất texture" hoặc "crash".
 
-Coupled with a fast CDN like FiveCache to deliver these optimized assets quickly, your server will perform better than ever.`,
+Kết hợp với một CDN nhanh như FiveCache để phân phối các tài nguyên đã tối ưu này một cách nhanh chóng, server của bạn sẽ hoạt động tốt hơn bao giờ hết.`,
   },
   {
     slug: 'why-cdn-matters',
-    title: 'Why a CDN is Critical for High-Population Servers',
-    category: 'Education',
+    title: 'Tại sao CDN lại Quan trọng đối với Server Đông Người chơi',
+    category: 'Giáo dục',
     date: new Date('2025-11-10'),
     readTime: 4,
     excerpt:
-      "For high-population servers, a Content Delivery Network (CDN) isn't just a luxury; it's a necessity.",
-    content: `As your FiveM server grows, you might start noticing complaints about slow download speeds, "curl error" messages, or players getting timed out while joining. These aren't just minor annoyances—they are signs that your server's direct file serving capabilities are reaching their limit.
+      "Đối với các server đông người chơi, Mạng phân phối nội dung (CDN) không chỉ là xa xỉ phẩm; mà là điều thiết yếu.",
+    content: `Khi server FiveM của bạn phát triển, bạn có thể bắt đầu nhận thấy những phàn nàn về tốc độ tải xuống chậm, thông báo lỗi "curl error", hoặc người chơi bị timeout khi tham gia. Đây không chỉ là những phiền toái nhỏ—chúng là dấu hiệu cho thấy khả năng phục vụ file trực tiếp của server đang đạt đến giới hạn.
 
-For high-population servers, a Content Delivery Network (CDN) isn't just a luxury; it's a necessity. Here's why moving your assets to a global CDN like FiveCache can transform your player experience.
+Đối với các server đông người chơi, Mạng phân phối nội dung (CDN) không chỉ là xa xỉ phẩm; mà là điều thiết yếu. Đây là lý do tại sao việc chuyển tài nguyên của bạn sang một CDN toàn cầu như FiveCache có thể thay đổi trải nghiệm người chơi của bạn.
 
-## The Bandwidth Bottleneck
+## Nút thắt Băng thông
 
-When you host assets directly on your game server (VPS or Dedicated), every player downloading cars, maps, and clothes is eating into the same bandwidth that the server uses to sync player positions and game state.
+Khi bạn lưu trữ tài nguyên trực tiếp trên server game (VPS hoặc Dedicated), mỗi người chơi tải xuống xe, bản đồ và quần áo đều tiêu tốn cùng một băng thông mà server sử dụng để đồng bộ vị trí người chơi và trạng thái game.
 
-The result? High ping, lag spikes for existing players, and slow downloads for joining players. A CDN offloads 100% of this traffic, leaving your server's bandwidth free for what matters: the gameplay.
+Kết quả là? Ping cao, lag giật cho người chơi hiện tại và tải xuống chậm cho người chơi đang tham gia. CDN giảm tải 100% lưu lượng này, giải phóng băng thông của server cho những gì quan trọng: gameplay.
 
-## Geographic Latency
+## Độ trễ Địa lý
 
-If your server is hosted in Germany, a player joining from the US or Asia will experience slow download speeds due to distance. A CDN stores copies of your files in data centers all around the world.
+Nếu server của bạn được đặt tại Đức, một người chơi tham gia từ Mỹ hoặc Châu Á sẽ trải qua tốc độ tải xuống chậm do khoảng cách. CDN lưu trữ bản sao các file của bạn tại các trung tâm dữ liệu trên khắp thế giới.
 
-With FiveCache, a player in New York downloads files from a New York server, while a player in London downloads from London. This can reduce download times by up to **80%**.
+Với FiveCache, một người chơi ở New York sẽ tải file từ một server ở New York, trong khi một người chơi ở London tải từ London. Điều này có thể giảm thời gian tải xuống tới **80%**.
 
-### Without CDN
-- Server bandwidth saturated
-- High ping during mass joins
-- Single point of failure
-- Slow global speeds
+### Không có CDN
+- Băng thông server bị bão hòa
+- Ping cao khi đông người tham gia
+- Điểm lỗi đơn lẻ
+- Tốc độ toàn cầu chậm
 
-### With FiveCache CDN
-- Zero load on game server
-- Consistent low ping
-- Global redundancy
-- Maximum download speeds
+### Với FiveCache CDN
+- Không tải lên server game
+- Ping thấp ổn định
+- Dự phòng toàn cầu
+- Tốc độ tải xuống tối đa
 
-## Reliability and DDoS Protection
+## Độ tin cậy và Bảo vệ DDoS
 
-Serving files exposes your server IP to potential attacks. By using a CDN, the file requests are handled by our protected infrastructure. Even if your game server is under attack, players can still download the cache, and once the attack is mitigated, they are ready to join immediately.`,
+Việc phục vụ file khiến IP server của bạn dễ bị tấn công. Bằng cách sử dụng CDN, các yêu cầu file được xử lý bởi hạ tầng được bảo vệ của chúng tôi. Ngay cả khi server game của bạn đang bị tấn công, người chơi vẫn có thể tải cache xuống, và khi cuộc tấn công được giảm thiểu, họ đã sẵn sàng tham gia ngay lập tức.`,
   },
 ]
 
 const DEMO_COUNTRIES = [
-  { country: 'United States', code: 'US' },
-  { country: 'Germany', code: 'DE' },
-  { country: 'United Kingdom', code: 'GB' },
-  { country: 'Italy', code: 'IT' },
-  { country: 'France', code: 'FR' },
+  { country: 'Hoa Kỳ', code: 'US' },
+  { country: 'Đức', code: 'DE' },
+  { country: 'Vương quốc Anh', code: 'GB' },
+  { country: 'Ý', code: 'IT' },
+  { country: 'Pháp', code: 'FR' },
   { country: 'Brazil', code: 'BR' },
-  { country: 'Netherlands', code: 'NL' },
-  { country: 'Spain', code: 'ES' },
+  { country: 'Hà Lan', code: 'NL' },
+  { country: 'Tây Ban Nha', code: 'ES' },
 ]
 
 const DEMO_FILES = [
@@ -183,7 +183,7 @@ function makeMonthlyStats(serverId: string) {
 }
 
 async function main() {
-  console.log('Seeding FiveCache database...')
+  console.log('Đang seed dữ liệu cho cơ sở dữ liệu FiveCache...')
 
   await db.balanceTransaction.deleteMany()
   await db.shieldAccessLog.deleteMany()
@@ -200,24 +200,24 @@ async function main() {
 
   const demoUser = await db.user.create({
     data: {
-      email: 'demo@fivecache.site',
-      name: 'Demo User',
+      email: 'demo@fivecachesite.vercel.app',
+      name: 'Người dùng Demo',
       passwordHash: hashPassword('demo1234'),
       emailVerified: new Date(),
       plan: 'pro_plus',
-      balanceVnd: 10_000_000, // give demo user enough balance for testing shields
+      balanceVnd: 10_000_000, // cấp đủ số dư cho người dùng demo để test shield
     },
   })
-  console.log(`Created demo user: ${demoUser.email} (balance: ${demoUser.balanceVnd.toLocaleString()}đ)`)
+  console.log(`Đã tạo người dùng demo: ${demoUser.email} (số dư: ${demoUser.balanceVnd.toLocaleString()}đ)`)
 
   const serverId = 'demo1abc2'
-  const domain = `${serverId}.fivecache.site`
+  const domain = `${serverId}.fivecachesite.vercel.app`
   const cacheUrl = `https://${domain}/files`
   const cacheServer = await db.cacheServer.create({
     data: {
       userId: demoUser.id,
       serverId,
-      name: 'My Roleplay Server',
+      name: 'Server Roleplay của tôi',
       serverIp: '149.202.65.1',
       serverPort: 30120,
       domain,
@@ -236,9 +236,9 @@ async function main() {
     },
   })
 
-  // Demo shield server
+  // Server Shield demo
   const shieldCode = 'sharkcity'
-  const shieldDomain = `${shieldCode}.fivecache.shield`
+  const shieldDomain = `${shieldCode}.fivecachesite.vercel.app`
   const shieldCacheUrl = `https://${shieldDomain}/files`
   const shieldAdhesiveKey = 'demo1234adhesivekeyfivemshield1234567890abcdef'
   const shield = await db.shieldServer.create({
@@ -254,7 +254,7 @@ async function main() {
       adhesiveKey: shieldAdhesiveKey,
       status: 'active',
       pricePerMonth: 299_000,
-      expiresAt: new Date(Date.now() + 25 * 24 * 60 * 60 * 1000), // 25 days left
+      expiresAt: new Date(Date.now() + 25 * 24 * 60 * 60 * 1000), // còn 25 ngày
       lastBilledAt: new Date(Date.now() - 5 * 24 * 60 * 60 * 1000),
       autoRenew: true,
       totalRequests: 458_921,
@@ -271,9 +271,7 @@ async function main() {
       reference: shield.id,
     },
   })
-  console.log(`Created demo shield: ${shield.code} (key: ${shield.adhesiveKey.slice(0, 8)}...)`)
-
-  // Seed some sample shield access logs
+  console.log(`Đã tạo shield demo: ${shield.code} (key: ${shield.adhesiveKey.slice(0, 8)}...)`)
   const sampleLogs = [
     { filePath: 'stream/vehicles/police.ytd', status: 'allowed', reason: 'ok', bytesServed: 1024 * 50, playerIp: '14.231.45.1', playerLicense: 'abc123def456' },
     { filePath: 'scripts/client.lua', status: 'blocked', reason: 'bad_user_agent', bytesServed: 0, playerIp: '45.155.205.83', playerLicense: null },
@@ -304,15 +302,14 @@ async function main() {
   }))
   await db.topFile.createMany({ data: files })
 
-  console.log(`Created cache server: ${cacheServer.name}`)
+  console.log(`Đã tạo cache server: ${cacheServer.name}`)
 
   for (const post of BLOG_POSTS) {
     await db.blogPost.create({ data: post })
   }
-  console.log(`Created ${BLOG_POSTS.length} blog posts`)
-
-  console.log('Seed complete.')
-  console.log('Login with: demo@fivecache.site / demo1234')
+  console.log(`Đã tạo ${BLOG_POSTS.length} bài viết blog`)
+  console.log('Seed hoàn tất.')
+  console.log('Đăng nhập bằng: demo@fivecachesite.vercel.app / demo1234')
 }
 
 main()

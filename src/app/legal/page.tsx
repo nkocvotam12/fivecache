@@ -80,7 +80,7 @@ function TermsOfService() {
       </header>
 
       <p className="text-zinc-300 leading-relaxed">
-        Welcome to FiveCache (fivecache.site). By using our services, you agree to the following
+        Welcome to FiveCache (fivecachesite.vercel.app). By using our services, you agree to the following
         Terms of Service. Please read them carefully.
       </p>
 
@@ -164,7 +164,7 @@ function TermsOfService() {
           If you have any questions about these terms, please contact us.
         </p>
         <a
-          href="mailto:support@fivecache.site"
+          href="mailto:support@fivecachesite.vercel.app"
           className="inline-flex items-center gap-2 bg-gradient-to-r from-yellow-400 to-yellow-600 hover:from-yellow-500 hover:to-yellow-700 text-black px-6 py-2 rounded-lg font-semibold transition-all"
         >
           <Mail className="h-4 w-4" />
@@ -267,7 +267,7 @@ function PrivacyPolicy() {
       <div className="mt-8 pt-6 border-t border-zinc-800">
         <p className="text-zinc-400 mb-3">Questions about privacy?</p>
         <a
-          href="mailto:privacy@fivecache.site"
+          href="mailto:privacy@fivecachesite.vercel.app"
           className="inline-flex items-center gap-2 bg-gradient-to-r from-yellow-400 to-yellow-600 hover:from-yellow-500 hover:to-yellow-700 text-black px-6 py-2 rounded-lg font-semibold transition-all"
         >
           <Mail className="h-4 w-4" />

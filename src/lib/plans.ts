@@ -24,7 +24,7 @@ export const PRICING_PLANS: PricingPlan[] = [
     features: [
       '50GB NVME SSD cache',
       'Unlimited traffic',
-      '*.fivecache.site public domain',
+      '*.fivecachesite.vercel.app public domain',
       'Email support',
       'Basic real-time stats',
       '1 FiveM server slot',
@@ -43,7 +43,7 @@ export const PRICING_PLANS: PricingPlan[] = [
     features: [
       'Unlimited NVME SSD cache',
       'Unlimited traffic',
-      '*.fivecache.site public domain',
+      '*.fivecachesite.vercel.app public domain',
       '24/7 priority support',
       'Real-time stats',
       '5 FiveM server slots',

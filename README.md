@@ -36,7 +36,7 @@ Khi một người chơi kết nối vào máy chủ FiveM:
 1. Mặc định, game client tải toàn bộ resources (xe cộ, bản đồ, script `.ytd`, `.yft`) trực tiếp từ máy chủ game (`http://<ip>:<port>/files/...`). Điều này làm nghẽn băng thông máy chủ game và gây giật lag (desync/crash).
 2. Khi cấu hình lệnh sau vào `server.cfg`:
    ```cfg
-   fileserver_add ".*" "https://<SERVER_ID>.fivecache.site/files"
+   fileserver_add ".*" "https://<SERVER_ID>.fivecachesite.vercel.app/files"
    ```
 3. Client FiveM sẽ chuyển hướng toàn bộ việc tải file sang hệ thống CDN.
 4. **Hệ thống Caching:**
@@ -83,7 +83,7 @@ Truy cập ứng dụng tại: `http://localhost:3000`
 ## 4. Tài khoản đăng nhập thử nghiệm
 
 Sau khi chạy lệnh seed ở bước 4, bạn có thể đăng nhập ngay với thông tin sau:
-- **Email:** `demo@fivecache.site`
+- **Email:** `demo@fivecachesite.vercel.app`
 - **Mật khẩu:** `demo1234`
 - **Gói dịch vụ mặc định:** `Pro Plus` (cho phép tạo tối đa 5 slot máy chủ, xem đầy đủ phân tích thống kê)
 

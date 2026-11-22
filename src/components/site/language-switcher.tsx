@@ -28,8 +28,6 @@ export function LanguageSwitcher({ variant = 'header', className = '' }: Languag
   const dropdownRef = useRef<HTMLDivElement>(null)
 
   const currentLang = LANGUAGES.find((l) => l.code === locale) || LANGUAGES[0]
-
-  // Close dropdown on click outside
   useEffect(() => {
     function handleClickOutside(event: MouseEvent) {
       if (dropdownRef.current && !dropdownRef.current.contains(event.target as Node)) {

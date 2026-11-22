@@ -11,8 +11,10 @@ import { useLanguage } from '@/context/language-context'
 import { LanguageSwitcher } from '@/components/site/language-switcher'
 
 export default function LoginPage() {
-  useRedirectIfAuthenticated()
   const router = useRouter()
+  useEffect(() => {
+    router.replace('/dashboard')
+  }, [router])
   const { toast } = useToast()
   const { t } = useLanguage()
   const [email, setEmail] = useState('')
@@ -157,7 +159,7 @@ export default function LoginPage() {
 
           <p className="pt-4 text-xs text-zinc-500 text-center">
             {t.auth.login.demoHint}{' '}
-            <code className="text-yellow-400">demo@fivecache.site</code> /{' '}
+            <code className="text-yellow-400">demo@fivecachesite.vercel.app</code> /{' '}
             <code className="text-yellow-400">demo1234</code>
           </p>
         </div>

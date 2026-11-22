@@ -85,7 +85,7 @@ function Hero() {
 
           <div className="flex flex-col sm:flex-row gap-4 justify-center items-center">
             <Link
-              href="/signup"
+              href="/dashboard"
               className="inline-flex items-center justify-center gap-2 bg-gradient-to-r from-yellow-400 to-yellow-600 hover:from-yellow-500 hover:to-yellow-700 text-black px-10 py-5 text-lg font-semibold rounded-xl shadow-2xl shadow-yellow-500/30 hover:shadow-yellow-500/50 transition-all duration-300 hover:scale-105"
             >
               {t.hero.ctaGetStarted}
@@ -250,7 +250,7 @@ function StatsSection() {
 function HowItWorks() {
   const { t } = useLanguage()
   const [copied, setCopied] = useState(false)
-  const configLine = `fileserver_add ".*" "https://SERVER_ID.fivecache.site/files"`
+  const configLine = `fileserver_add ".*" "https://SERVER_ID.fivecachesite.vercel.app/files"`
 
   const copyConfig = () => {
     navigator.clipboard.writeText(configLine).then(() => {
@@ -471,7 +471,7 @@ function FinalCTA() {
           experiences.
         </p>
         <Link
-          href="/signup"
+          href="/dashboard"
           className="inline-flex items-center justify-center gap-2 bg-gradient-to-r from-yellow-400 to-yellow-600 hover:from-yellow-500 hover:to-yellow-700 text-black px-10 py-5 text-lg font-semibold rounded-xl shadow-2xl shadow-yellow-500/30 hover:shadow-yellow-500/50 transition-all duration-300 hover:scale-105 animate-fadeInUp"
         >
           Get Started
