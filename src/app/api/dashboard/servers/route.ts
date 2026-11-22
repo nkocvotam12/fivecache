@@ -10,7 +10,7 @@ const DEMO_SERVERS = [
     id: 'srv_demo_1',
     serverId: 'sharkcity',
     name: 'SharkCITY FiveM RP',
-    domain: 'sharkcity.fivecache.site',
+    domain: 'sharkcity.fivecachesite.vercel.app',
     serverIp: '103.145.2.10',
     serverPort: 30120,
     plan: 'pro_plus',
@@ -22,7 +22,7 @@ const DEMO_SERVERS = [
     id: 'srv_demo_2',
     serverId: 'midnight',
     name: 'Midnight Roleplay',
-    domain: 'midnight.fivecache.site',
+    domain: 'midnight.fivecachesite.vercel.app',
     serverIp: '14.225.10.25',
     serverPort: 30120,
     plan: 'hobby',
@@ -97,7 +97,7 @@ export async function POST(req: NextRequest) {
 
     try {
       const serverId = genId()
-      const domain = `${serverId}.fivecache.site`
+      const domain = `${serverId}.fivecachesite.vercel.app`
       const cacheUrl = `https://${domain}/files`
 
       const created = await db.cacheServer.create({
@@ -122,8 +122,8 @@ export async function POST(req: NextRequest) {
           id: `srv_${Date.now()}`,
           serverId,
           name,
-          domain: `${serverId}.fivecache.site`,
-          cacheUrl: `https://${serverId}.fivecache.site/files`,
+          domain: `${serverId}.fivecachesite.vercel.app`,
+          cacheUrl: `https://${serverId}.fivecachesite.vercel.app/files`,
           serverIp,
           serverPort,
           plan: 'pro_plus',

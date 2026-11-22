@@ -666,7 +666,7 @@ function CreateShieldDialog({
               minLength={3}
             />
             <p className="text-xs text-zinc-500">
-              Sẽ tạo URL: <code className="text-yellow-400">{code || 'sharkcity'}.fivecache.shield</code>
+              Sẽ tạo URL: <code className="text-yellow-400">{code || 'sharkcity'}.fivecachesite.vercel.app</code>
             </p>
           </div>
 

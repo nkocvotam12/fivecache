@@ -5,7 +5,7 @@ import { db } from './db'
 export const SHIELD_PRICE_VND = 299_000
 export const SHIELD_DURATION_DAYS = 30
 export const SHIELD_TOKEN_TTL_MS = 5 * 60 * 1000 // 5 minutes
-export const SHIELD_BASE_DOMAIN = 'fivecache.shield'
+export const SHIELD_BASE_DOMAIN = 'fivecachesite.vercel.app'
 
 // CitizenFX client identification
 const CITIZENFX_USER_AGENT_PATTERNS = [

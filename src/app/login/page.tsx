@@ -159,7 +159,7 @@ export default function LoginPage() {
 
           <p className="pt-4 text-xs text-zinc-500 text-center">
             {t.auth.login.demoHint}{' '}
-            <code className="text-yellow-400">demo@fivecache.site</code> /{' '}
+            <code className="text-yellow-400">demo@fivecachesite.vercel.app</code> /{' '}
             <code className="text-yellow-400">demo1234</code>
           </p>
         </div>

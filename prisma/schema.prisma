@@ -36,8 +36,8 @@ model ShieldServer {
   originHost      String   // IP or domain of FXServer
   originPort      Int      // 30120
   protocol        String   @default("http") // http or https
-  domain          String   // <code>.fivecache.shield
-  cacheUrl        String   // https://<code>.fivecache.shield/files
+  domain          String   // <code>.fivecachesite.vercel.app
+  cacheUrl        String   // https://<code>.fivecachesite.vercel.app/files
   adhesiveKey     String   // 32-byte hex random, used in `set adhesive_cdnKey`
   status          String   @default("active") // active | suspended | cancelled
   pricePerMonth   Int      @default(299000) // VND
@@ -118,8 +118,8 @@ model CacheServer {
   name          String
   serverIp      String?
   serverPort    Int?
-  domain        String // abc123.fivecache.site
-  cacheUrl      String // https://abc123.fivecache.site/files
+  domain        String // abc123.fivecachesite.vercel.app
+  cacheUrl      String // https://abc123.fivecachesite.vercel.app/files
   plan          String         @default("pro_plus")
   blocked       Boolean        @default(false)
   resetDate     DateTime?

@@ -2,7 +2,7 @@ import { NextRequest, NextResponse } from 'next/server'
 
 export const MOCK_USER = {
   id: 'usr_demo_admin',
-  email: 'admin@fivecache.site',
+  email: 'admin@fivecachesite.vercel.app',
   name: 'FiveCache Admin',
   plan: 'pro_plus',
   emailVerified: true,

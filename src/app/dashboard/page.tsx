@@ -713,7 +713,7 @@ function ServerConfigDialog({
                 Generated server.cfg snippet:
               </p>
               <pre className="text-green-400 text-sm font-mono whitespace-pre-wrap break-all">
-                {`fileserver_add ".*" "https://${serverId}.fivecache.site/files"`}
+                {`fileserver_add ".*" "https://${serverId}.fivecachesite.vercel.app/files"`}
               </pre>
             </div>
           )}

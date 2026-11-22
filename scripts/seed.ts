@@ -200,7 +200,7 @@ async function main() {
 
   const demoUser = await db.user.create({
     data: {
-      email: 'demo@fivecache.site',
+      email: 'demo@fivecachesite.vercel.app',
       name: 'Người dùng Demo',
       passwordHash: hashPassword('demo1234'),
       emailVerified: new Date(),
@@ -211,7 +211,7 @@ async function main() {
   console.log(`Đã tạo người dùng demo: ${demoUser.email} (số dư: ${demoUser.balanceVnd.toLocaleString()}đ)`)
 
   const serverId = 'demo1abc2'
-  const domain = `${serverId}.fivecache.site`
+  const domain = `${serverId}.fivecachesite.vercel.app`
   const cacheUrl = `https://${domain}/files`
   const cacheServer = await db.cacheServer.create({
     data: {
@@ -238,7 +238,7 @@ async function main() {
 
   // Server Shield demo
   const shieldCode = 'sharkcity'
-  const shieldDomain = `${shieldCode}.fivecache.shield`
+  const shieldDomain = `${shieldCode}.fivecachesite.vercel.app`
   const shieldCacheUrl = `https://${shieldDomain}/files`
   const shieldAdhesiveKey = 'demo1234adhesivekeyfivemshield1234567890abcdef'
   const shield = await db.shieldServer.create({
@@ -309,7 +309,7 @@ async function main() {
   }
   console.log(`Đã tạo ${BLOG_POSTS.length} bài viết blog`)
   console.log('Seed hoàn tất.')
-  console.log('Đăng nhập bằng: demo@fivecache.site / demo1234')
+  console.log('Đăng nhập bằng: demo@fivecachesite.vercel.app / demo1234')
 }
 
 main()

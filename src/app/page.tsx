@@ -250,7 +250,7 @@ function StatsSection() {
 function HowItWorks() {
   const { t } = useLanguage()
   const [copied, setCopied] = useState(false)
-  const configLine = `fileserver_add ".*" "https://SERVER_ID.fivecache.site/files"`
+  const configLine = `fileserver_add ".*" "https://SERVER_ID.fivecachesite.vercel.app/files"`
 
   const copyConfig = () => {
     navigator.clipboard.writeText(configLine).then(() => {
